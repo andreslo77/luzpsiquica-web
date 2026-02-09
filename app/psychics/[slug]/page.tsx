@@ -1,10 +1,10 @@
-// app/psychics/[slug]/page_FIXED.tsx
+// app/psychics/[slug]/page.tsx
 import Link from "next/link";
 import Image from "next/image";
 import { fetchPsychics } from "@/lib/api";
 
 type PageProps = {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: { slug: string };
 };
 
 function slugify(value: string) {
@@ -30,13 +30,7 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Row({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="text-sm leading-7">
       <span className="font-semibold">{label}: </span>
@@ -64,8 +58,7 @@ function resolvePhotoSrc(photo?: string | null) {
 }
 
 export default async function PsychicDetailPage({ params }: PageProps) {
-  const resolvedParams = await Promise.resolve(params);
-  const rawSlug = resolvedParams?.slug ?? "";
+  const rawSlug = params?.slug ?? "";
   const slug = slugify(decodeURIComponent(rawSlug));
 
   const psychics = await fetchPsychics();
@@ -133,13 +126,9 @@ export default async function PsychicDetailPage({ params }: PageProps) {
   }
 
   const displayName = psychic?.displayName ?? psychic?.psychicName ?? "Psíquico";
-
   const isOnline = typeof psychic?.isOnline === "boolean" ? psychic.isOnline : undefined;
-
   const ratingAvg = typeof psychic?.ratingAvg === "number" ? psychic.ratingAvg : undefined;
-
-  const reviewsCount =
-    typeof psychic?.reviewsCount === "number" ? psychic.reviewsCount : undefined;
+  const reviewsCount = typeof psychic?.reviewsCount === "number" ? psychic.reviewsCount : undefined;
 
   const bio = psychic?.bio ?? psychic?.shortBio ?? "";
 
@@ -159,7 +148,6 @@ export default async function PsychicDetailPage({ params }: PageProps) {
   const about: string | undefined =
     typeof psychic?.about === "string" ? psychic.about.trim() : undefined;
 
-  // ✅ aquí el cambio real
   const photoSrc = resolvePhotoSrc((psychic as any)?.photoUrl ?? (psychic as any)?.photo ?? null);
   const isDataUri = typeof photoSrc === "string" && photoSrc.startsWith("data:image");
 
@@ -195,14 +183,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
                     loading="eager"
                   />
                 ) : (
-                  <Image
-                    src={photoSrc}
-                    alt={displayName}
-                    fill
-                    className="object-cover"
-                    sizes="112px"
-                    priority
-                  />
+                  <Image src={photoSrc} alt={displayName} fill className="object-cover" sizes="112px" priority />
                 )
               ) : (
                 <div className="flex h-full w-full items-center justify-center text-xs" style={{ opacity: 0.7 }}>
@@ -228,14 +209,16 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               </div>
 
               <p className="text-sm italic" style={{ color: "rgba(49,27,146,0.85)" }}>
-                {psychic?.tagline ? `“${psychic.tagline}”` : "Consulta desde la app con privacidad y respeto."}
+                {psychic?.tagline
+                  ? `“${psychic.tagline}”`
+                  : "Consulta desde la app con privacidad y respeto."}
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-3 lg:justify-end">
-            <a
-              href="#"
+            <Link
+              href="/download"
               className="rounded-2xl px-5 py-2.5 text-sm font-medium hover:opacity-90"
               style={{
                 background: "rgba(255,255,255,0.9)",
@@ -244,7 +227,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               }}
             >
               Descargar la app
-            </a>
+            </Link>
 
             <Link
               href="/psychics"
@@ -293,9 +276,9 @@ export default async function PsychicDetailPage({ params }: PageProps) {
 
               {toolsOtherText ? <Row label="Herramientas (otros)">{toolsOtherText}</Row> : null}
 
-              {experience ? <Row label="Experiencia">{experience}</Row> : <Row label="Experiencia">En configuración</Row>}
+              <Row label="Experiencia">{experience ? experience : "En configuración"}</Row>
 
-              {about ? <Row label="Sobre mí">{about}</Row> : <Row label="Sobre mí">En configuración</Row>}
+              <Row label="Sobre mí">{about ? about : "En configuración"}</Row>
             </div>
           </div>
 
@@ -319,8 +302,8 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           </p>
 
           <div className="mt-5 flex flex-col gap-3">
-            <a
-              href="#"
+            <Link
+              href="/download"
               className="rounded-2xl px-4 py-2 text-center text-sm font-medium hover:opacity-90"
               style={{
                 background: "rgba(255,255,255,0.9)",
@@ -329,7 +312,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               }}
             >
               Descargar la app
-            </a>
+            </Link>
 
             <Link
               href="/psychics"

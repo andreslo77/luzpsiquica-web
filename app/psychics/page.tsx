@@ -1,6 +1,6 @@
-// app/psychics/page_FIXED.tsx
+// app/psychics/page.tsx
 import Link from "next/link";
-import { fetchPsychics, type Psychic } from "@/lib/api";
+import { fetchPsychics, type Psychic, __API_DEBUG__ } from "@/lib/api";
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -27,17 +27,9 @@ function resolvePhotoSrc(photo?: string | null) {
   const raw = String(photo).trim();
   if (!raw) return null;
 
-  // URL normal (http/https) o relativa (/uploads/..)
-  if (raw.startsWith("http://") || raw.startsWith("https://") || raw.startsWith("/")) {
-    return raw;
-  }
+  if (raw.startsWith("http://") || raw.startsWith("https://") || raw.startsWith("/")) return raw;
+  if (raw.startsWith("data:image")) return raw;
 
-  // ya viene como data-uri
-  if (raw.startsWith("data:image")) {
-    return raw;
-  }
-
-  // base64 puro
   return `data:image/jpeg;base64,${raw}`;
 }
 
@@ -63,7 +55,8 @@ export default async function PsychicsPage() {
         </p>
 
         <p className="mt-1 text-xs" style={{ color: "rgba(31,27,36,0.55)" }}>
-          API: {process.env.NEXT_PUBLIC_API_URL}
+          API_ORIGIN: {__API_DEBUG__.API_ORIGIN} | API_BASE: {__API_DEBUG__.API_BASE} | PATH:{" "}
+          {__API_DEBUG__.PSYCHICS_PATH}
         </p>
       </div>
 
@@ -79,9 +72,6 @@ export default async function PsychicsPage() {
           <p className="mt-1" style={{ opacity: 0.85 }}>
             {error}
           </p>
-          <p className="mt-2 text-xs" style={{ opacity: 0.75 }}>
-            Revisa que exista la ruta: {process.env.NEXT_PUBLIC_PSYCHICS_PATH}
-          </p>
         </div>
       )}
 
@@ -93,7 +83,6 @@ export default async function PsychicsPage() {
 
           const hasRating = typeof p.ratingAvg === "number" || typeof p.reviewsCount === "number";
 
-          // ✅ aquí el cambio real
           const photoSrc = resolvePhotoSrc((p as any)?.photoUrl ?? (p as any)?.photo ?? null);
 
           return (
