@@ -88,7 +88,7 @@ export default async function PsychicsPage() {
           return (
             <Link
               key={p.slug}
-              href={`/psychics/${p.slug}`}
+              href={`/psychics/${encodeURIComponent(p.slug!)}`}
               className="rounded-3xl p-5 transition"
               style={{
                 background: "var(--lp-card)",

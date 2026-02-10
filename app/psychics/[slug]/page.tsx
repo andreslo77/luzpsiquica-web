@@ -30,7 +30,13 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+function Row({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="text-sm leading-7">
       <span className="font-semibold">{label}: </span>
@@ -58,11 +64,14 @@ function resolvePhotoSrc(photo?: string | null) {
 }
 
 export default async function PsychicDetailPage({ params }: PageProps) {
-  const rawSlug = params?.slug ?? "";
-  const slug = slugify(decodeURIComponent(rawSlug));
+  // ✅ aquí el fix real: params.slug debe venir SIEMPRE aquí
+  const rawSlug = typeof params?.slug === "string" ? params.slug : "";
+  const decodedSlug = rawSlug ? decodeURIComponent(rawSlug) : "";
+  const slug = slugify(decodedSlug);
 
   const psychics = await fetchPsychics();
 
+  // ✅ búsqueda robusta
   const psychic =
     psychics.find((p: any) => (p?.slug ? slugify(String(p.slug)) : "") === slug) ??
     psychics.find((p: any) => {
@@ -117,8 +126,20 @@ export default async function PsychicDetailPage({ params }: PageProps) {
             </Link>
           </div>
 
-          <div className="mt-4 text-xs" style={{ opacity: 0.6 }}>
-            Slug solicitado: <span style={{ opacity: 0.9 }}>{rawSlug}</span>
+          {/* ✅ debug bien visible */}
+          <div className="mt-4 text-xs" style={{ opacity: 0.75 }}>
+            <div>
+              Slug solicitado: <span style={{ opacity: 1 }}>{rawSlug || "(vacío)"}</span>
+            </div>
+            <div>
+              Slug decodificado: <span style={{ opacity: 1 }}>{decodedSlug || "(vacío)"}</span>
+            </div>
+            <div>
+              Slug normalizado: <span style={{ opacity: 1 }}>{slug || "(vacío)"}</span>
+            </div>
+            <div className="mt-2" style={{ opacity: 0.7 }}>
+              Psíquicos cargados: <span style={{ opacity: 1 }}>{psychics.length}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -183,7 +204,14 @@ export default async function PsychicDetailPage({ params }: PageProps) {
                     loading="eager"
                   />
                 ) : (
-                  <Image src={photoSrc} alt={displayName} fill className="object-cover" sizes="112px" priority />
+                  <Image
+                    src={photoSrc}
+                    alt={displayName}
+                    fill
+                    className="object-cover"
+                    sizes="112px"
+                    priority
+                  />
                 )
               ) : (
                 <div className="flex h-full w-full items-center justify-center text-xs" style={{ opacity: 0.7 }}>
@@ -209,16 +237,14 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               </div>
 
               <p className="text-sm italic" style={{ color: "rgba(49,27,146,0.85)" }}>
-                {psychic?.tagline
-                  ? `“${psychic.tagline}”`
-                  : "Consulta desde la app con privacidad y respeto."}
+                {psychic?.tagline ? `“${psychic.tagline}”` : "Consulta desde la app con privacidad y respeto."}
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-3 lg:justify-end">
-            <Link
-              href="/download"
+            <a
+              href="#"
               className="rounded-2xl px-5 py-2.5 text-sm font-medium hover:opacity-90"
               style={{
                 background: "rgba(255,255,255,0.9)",
@@ -227,7 +253,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               }}
             >
               Descargar la app
-            </Link>
+            </a>
 
             <Link
               href="/psychics"
@@ -267,18 +293,12 @@ export default async function PsychicDetailPage({ params }: PageProps) {
 
             <div className="mt-4 flex flex-col gap-3">
               <Row label="Idiomas">{languages.length ? languages.join(" · ") : "En configuración"}</Row>
-
               <Row label="Áreas">{areas.length ? areas.join(" · ") : "En configuración"}</Row>
-
               {areasOtherText ? <Row label="Áreas (otros)">{areasOtherText}</Row> : null}
-
               <Row label="Herramientas">{tools.length ? tools.join(" · ") : "En configuración"}</Row>
-
               {toolsOtherText ? <Row label="Herramientas (otros)">{toolsOtherText}</Row> : null}
-
-              <Row label="Experiencia">{experience ? experience : "En configuración"}</Row>
-
-              <Row label="Sobre mí">{about ? about : "En configuración"}</Row>
+              {experience ? <Row label="Experiencia">{experience}</Row> : <Row label="Experiencia">En configuración</Row>}
+              {about ? <Row label="Sobre mí">{about}</Row> : <Row label="Sobre mí">En configuración</Row>}
             </div>
           </div>
 
@@ -302,8 +322,8 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           </p>
 
           <div className="mt-5 flex flex-col gap-3">
-            <Link
-              href="/download"
+            <a
+              href="#"
               className="rounded-2xl px-4 py-2 text-center text-sm font-medium hover:opacity-90"
               style={{
                 background: "rgba(255,255,255,0.9)",
@@ -312,7 +332,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
               }}
             >
               Descargar la app
-            </Link>
+            </a>
 
             <Link
               href="/psychics"
@@ -337,7 +357,9 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           <div className="mt-4 text-xs" style={{ opacity: 0.6 }}>
             Slug solicitado: <span style={{ opacity: 0.9 }}>{rawSlug}</span>
             <br />
-            Slug del perfil: <span style={{ opacity: 0.9 }}>{psychic?.slug ?? slug}</span>
+            Slug normalizado: <span style={{ opacity: 0.9 }}>{slug}</span>
+            <br />
+            Slug del perfil: <span style={{ opacity: 0.9 }}>{psychic?.slug ?? "(sin slug)"}</span>
           </div>
         </div>
       </div>

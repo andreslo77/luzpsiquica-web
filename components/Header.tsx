@@ -1,8 +1,9 @@
-// components/Header.tsx
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Header() {
+export default function Header({ lang = "es" }: { lang?: string }) {
+  const base = `/${lang}`;
+
   return (
     <header
       className="sticky top-0 z-50 border-b backdrop-blur"
@@ -12,7 +13,7 @@ export default function Header() {
       }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href={base} className="flex items-center gap-3">
           <div
             className="relative h-9 w-9 overflow-hidden rounded-xl"
             style={{
@@ -42,20 +43,20 @@ export default function Header() {
         </Link>
 
         <nav className="flex items-center gap-5 text-sm">
-          <Link href="/psychics" className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
-            Psíquicos
-          </Link>
-          <Link href="/how-it-works" className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
-            Cómo funciona
+          <Link href={`${base}/psychics`} className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
+            {lang === "en" ? "Psychics" : "Psíquicos"}
           </Link>
 
-          {/* ✅ NUEVO */}
-          <Link href="/legal" className="opacity-90 hover:opacity-100">
-            Legal
+          <Link href={`${base}/how-it-works`} className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
+            {lang === "en" ? "How it works" : "Cómo funciona"}
+          </Link>
+
+          <Link href={`${base}/legal`} className="opacity-90 hover:opacity-100">
+            {lang === "en" ? "Legal" : "Legal"}
           </Link>
 
           <Link
-            href="/download"
+            href={`${base}/download`}
             className="rounded-full px-4 py-2 font-medium"
             style={{
               border: "1px solid var(--lp-border)",
@@ -63,7 +64,7 @@ export default function Header() {
               color: "var(--lp-primary-2)",
             }}
           >
-            Descargar app
+            {lang === "en" ? "Download app" : "Descargar app"}
           </Link>
         </nav>
       </div>
