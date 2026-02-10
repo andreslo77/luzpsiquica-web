@@ -1,8 +1,10 @@
+// components/Header.tsx
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header({ lang = "es" }: { lang?: string }) {
-  const base = `/${lang}`;
+  const safeLang = lang === "en" ? "en" : "es";
+  const base = `/${safeLang}`;
 
   return (
     <header
@@ -37,22 +39,30 @@ export default function Header({ lang = "es" }: { lang?: string }) {
               Luz Psíquica
             </div>
             <div className="text-xs" style={{ color: "rgba(31,27,36,0.65)" }}>
-              Orientación espiritual moderna
+              {safeLang === "en" ? "Modern spiritual guidance" : "Orientación espiritual moderna"}
             </div>
           </div>
         </Link>
 
         <nav className="flex items-center gap-5 text-sm">
-          <Link href={`${base}/psychics`} className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
-            {lang === "en" ? "Psychics" : "Psíquicos"}
+          <Link
+            href={`${base}/psychics`}
+            className="hover:opacity-100"
+            style={{ color: "rgba(31,27,36,0.75)" }}
+          >
+            {safeLang === "en" ? "Psychics" : "Psíquicos"}
           </Link>
 
-          <Link href={`${base}/how-it-works`} className="hover:opacity-100" style={{ color: "rgba(31,27,36,0.75)" }}>
-            {lang === "en" ? "How it works" : "Cómo funciona"}
+          <Link
+            href={`${base}/how-it-works`}
+            className="hover:opacity-100"
+            style={{ color: "rgba(31,27,36,0.75)" }}
+          >
+            {safeLang === "en" ? "How it works" : "Cómo funciona"}
           </Link>
 
           <Link href={`${base}/legal`} className="opacity-90 hover:opacity-100">
-            {lang === "en" ? "Legal" : "Legal"}
+            Legal
           </Link>
 
           <Link
@@ -64,7 +74,7 @@ export default function Header({ lang = "es" }: { lang?: string }) {
               color: "var(--lp-primary-2)",
             }}
           >
-            {lang === "en" ? "Download app" : "Descargar app"}
+            {safeLang === "en" ? "Download app" : "Descargar app"}
           </Link>
         </nav>
       </div>

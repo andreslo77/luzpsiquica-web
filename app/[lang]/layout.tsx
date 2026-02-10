@@ -12,19 +12,18 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
   params: Promise<{ lang: string }> | { lang: string };
-}>) {
+}) {
   const p = await Promise.resolve(params);
-  const lang = normalizeLang(p?.lang);
+  const lang = (p?.lang === "en" ? "en" : "es");
 
   return (
     <html lang={lang}>
-      <body className="antialiased">
-        <Header />
-        <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
-        <Footer />
+      <body>
+        <Header lang={lang} />
+        {children}
       </body>
     </html>
   );
