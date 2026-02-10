@@ -407,6 +407,7 @@ export const LEGAL_DOCS: Record<
       ],
     },
 
+    // dentro de: en: { ... OPERATIVO: { ... } }
     OPERATIVO: {
       title: "Platform Operational Document",
       version: "1.1",
@@ -417,12 +418,163 @@ export const LEGAL_DOCS: Record<
       whatsappNumberRaw: "+18136187770",
       sections: [
         {
-          title: "1. Purpose of this Document",
-          body: "[TODO: complete official legal English translation].",
+          title: "1. Purpose of this document",
+          body:
+            "This Operational Functioning Document aims to clearly, transparently, and technically describe the general operation of the Luz Psíquica platform, and to establish the operational, technical, and functional rules under which the service is provided to clients and psychics. This document is an integral part of the platform’s legal framework and is mandatory for all users who use the application.",
+        },
+        {
+          title: "2. General description of the platform",
+          body:
+            "Luz Psíquica is a digital platform that enables communication between clients and psychics through chat and voice call services, using a prepaid minutes system purchased by clients. Additionally, the platform may offer audiovisual content related to its activity for informational, promotional, commercial, or brand-positioning purposes. The platform acts as a technological intermediary, providing the technical infrastructure, payment systems, session control, minutes management, and the corresponding economic settlement to psychics.",
+        },
+
+        { title: "3. Roles within the platform", body: "" },
+        {
+          title: "3.1 Client",
+          body: "User who purchases minutes and accesses consultation services via chat or call.",
+        },
+        {
+          title: "3.2 Psychic",
+          body:
+            "Authorized user who provides consultation services to clients and receives financial\ncompensation according to the time effectively consumed.",
+        },
+        {
+          title: "3.3 Administrator",
+          body:
+            "User in charge of supervision, validation, maintenance, and the overall operation of the\nplatform.",
+        },
+
+        { title: "4. Operational service flow", body: "" },
+        {
+          title: "4.1 Registration and access",
+          body:
+            "• Users must register with valid information.\n" +
+            "• Clients can create an account and purchase minutes.\n" +
+            "• Psychics must be authorized by the platform before providing the service.",
+        },
+        {
+          title: "4.2 Purchase of minutes",
+          body:
+            "• Minutes are purchased through a payment gateway.\n" +
+            "• Minutes are prepaid and consumed in sessions.\n" +
+            "• The platform defines prices, packages, discounts, and operational rules.",
+        },
+        {
+          title: "4.3 Login and availability",
+          body:
+            "• The client selects an available psychic.\n" +
+            "• The session starts only if the client has enough purchased minutes.\n" +
+            "• The platform manages time and consumption control.",
+        },
+
+        { title: "5. Sessions, minute consumption, and anti-fraud control", body: "" },
+        {
+          title: "5.1 Session control",
+          body:
+            "• Consumption is counted per minute in chat or call.\n" +
+            "• The system closes sessions due to inactivity or completion.\n" +
+            "• Controls are applied to prevent abnormal usage or fraud.",
+        },
+        {
+          title: "5.2 Prohibition of exchanging personal data",
+          body:
+            "• Exchanging personal or contact information is prohibited.\n" +
+            "• Taking the commercial relationship outside the platform is prohibited.\n" +
+            "• Violations may result in suspension or closure.",
+        },
+
+        { title: "6. Validation and operation of the psychic role", body: "" },
+        {
+          title: "6.1 Psychic conditions",
+          body:
+            "• The psychic must be approved by the platform.\n" +
+            "• Must operate under internal rules.\n" +
+            "• May be suspended due to breaches, complaints, or fraud.",
+        },
+
+        { title: "7. Payments to psychics and financial settlement", body: "" },
+        {
+          title: "7.1 Financial settlement",
+          body:
+            "• The platform settles based on minutes effectively consumed.\n" +
+            "• Compensation is determined according to the platform’s internal rules and the internal record of completed transactions.\n" +
+            "• Payments are grouped and executed in defined cycles.",
+        },
+
+        { title: "8. Sound, music, and audiovisual assets of the platform", body: "" },
+        {
+          title: "8.1 Nature of the assets",
+          body:
+            "The platform uses digital assets that include, among others:\n" +
+            "• incoming call ringtones\n" +
+            "• notification sounds and system alerts\n" +
+            "• music embedded in audiovisual content\n" +
+            "• promotional, informational, or commercial videos\n" +
+            "These assets are an integral part of Luz Psíquica’s functional, communicative, and brand experience.",
+        },
+        {
+          title: "8.2 Origin of the assets",
+          body:
+            "The sound, music, and audiovisual assets used by the platform:\n" +
+            "• have been created specifically for Luz Psíquica\n" +
+            "• are developed through proprietary creative processes, which may include the use of generative AI tools, always under the platform’s direction, control, and curation\n" +
+            "• are not commercial music works nor third-party audiovisual content intended for independent exploitation",
+        },
+        {
+          title: "8.3 Audiovisual content and external distribution",
+          body:
+            "Audiovisual content produced by Luz Psíquica:\n" +
+            "• may be marketed, distributed, or shared within and outside the application\n" +
+            "• may be published on digital platforms and social networks\n" +
+            "• may include music, images, animations, texts, and voices generated or assisted by AI\n" +
+            "Distributing such content does not imply any transfer of rights to users, psychics, or third parties.",
+        },
+        {
+          title: "8.4 Intellectual property",
+          body:
+            "• All sound, music, and audiovisual assets are the exclusive property of Luz Psíquica, or are used under the necessary licenses.\n" +
+            "• They are not customizable by users.\n" +
+            "• They may not be extracted, reused, distributed, resold, or exploited outside the platform without express written authorization.",
+        },
+        {
+          title: "8.5 Purpose of use",
+          body:
+            "The assets described:\n" +
+            "• serve a technical, operational, communicative, and commercial function\n" +
+            "• are not independent artistic works for individual exploitation\n" +
+            "• do not generate economic, authorship, or participation rights for users or psychics",
+        },
+
+        {
+          title: "9. Technical and operational limitations",
+          body:
+            "• The platform depends on internet connectivity.\n" +
+            "• Technical failures, network interruptions, or maintenance may temporarily affect the service.\n" +
+            "• Luz Psíquica does not guarantee continuous and uninterrupted availability.",
+        },
+        {
+          title: "10. Service modifications",
+          body:
+            "Luz Psíquica reserves the right to:\n" +
+            "• modify functionalities\n" +
+            "• adjust operational rules\n" +
+            "• update payment, communication, or content systems\n" +
+            "These modifications may be made to improve the user experience or for technical, legal, or operational reasons.",
+        },
+        {
+          title: "11. Acceptance of this document",
+          body:
+            "Using the platform implies express acceptance of this Operational Functioning Document,\n" +
+            "as well as the other associated legal documents.",
         },
         {
           title: "12. Additional information",
-          body: "[TODO: complete official legal English translation].",
+          body:
+            "Person responsible for the technological development of the platform:\n" +
+            "Andrés Loaiza\n" +
+            "The design, technical development, functional architecture, and technological operation of the Luz Psíquica platform have been carried out under the direction of the responsible person mentioned, in coordination with the platform’s objectives, ethical principles, and operational guidelines.\n" +
+            "Final note\n" +
+            "This document is published as part of Luz Psíquica’s commitment to transparency, technological ethics, responsible creativity, and operational clarity.",
         },
       ],
     },

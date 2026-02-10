@@ -1,10 +1,42 @@
 // components/Header.tsx
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
-export default function Header({ lang = "es" }: { lang?: string }) {
-  const safeLang = lang === "en" ? "en" : "es";
+function detectLang(pathname: string) {
+  if (!pathname) return "es";
+  const seg = pathname.split("/")[1];
+  return seg === "en" ? "en" : "es";
+}
+
+function stripLeadingLang(pathname: string) {
+  // "/es/psychics/frida" -> "/psychics/frida"
+  // "/en" -> "/"
+  const parts = (pathname || "/").split("/");
+  const first = parts[1];
+  if (first === "en" || first === "es") {
+    const rest = parts.slice(2).join("/");
+    return rest ? `/${rest}` : "/";
+  }
+  return pathname || "/";
+}
+
+export default function Header() {
+  const pathname = usePathname() || "/";
+  const router = useRouter();
+
+  const safeLang = detectLang(pathname); // "es" | "en"
   const base = `/${safeLang}`;
+
+  const toggleLang = safeLang === "en" ? "es" : "en";
+
+  const handleToggleLanguage = () => {
+    const rest = stripLeadingLang(pathname);
+    const nextPath = `/${toggleLang}${rest === "/" ? "" : rest}`;
+    router.push(nextPath);
+  };
 
   return (
     <header
@@ -39,7 +71,9 @@ export default function Header({ lang = "es" }: { lang?: string }) {
               Luz Psíquica
             </div>
             <div className="text-xs" style={{ color: "rgba(31,27,36,0.65)" }}>
-              {safeLang === "en" ? "Modern spiritual guidance" : "Orientación espiritual moderna"}
+              {safeLang === "en"
+                ? "Modern spiritual guidance"
+                : "Orientación espiritual moderna"}
             </div>
           </div>
         </Link>
@@ -64,6 +98,16 @@ export default function Header({ lang = "es" }: { lang?: string }) {
           <Link href={`${base}/legal`} className="opacity-90 hover:opacity-100">
             Legal
           </Link>
+
+          <button
+            type="button"
+            onClick={handleToggleLanguage}
+            className="rounded-full border border-white/20 px-3 py-2 text-xs font-medium hover:bg-white/10"
+            aria-label="Cambiar idioma"
+            title={safeLang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+          >
+            {safeLang === "en" ? "ES" : "EN"}
+          </button>
 
           <Link
             href={`${base}/download`}

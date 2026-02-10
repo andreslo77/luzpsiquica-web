@@ -82,7 +82,10 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           aboutMe: "About me",
           pending: "Pending",
           comments: "Comments",
-          noComments: "No comments yet for this psychic.",
+          commentsOnlyAppTitle: "Comments are available in the app",
+          commentsOnlyAppBody:
+            "For privacy and safety, comments and reviews are visible only inside the Luz Psíquica app.",
+          openInApp: "Download the app",
           howTo: "How to consult",
           infoProfile:
             "This profile is informational. To start a consultation, download the app and select",
@@ -117,7 +120,10 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           aboutMe: "Sobre mí",
           pending: "En configuración",
           comments: "Comentarios",
-          noComments: "Aún no hay comentarios para este psíquico.",
+          commentsOnlyAppTitle: "Los comentarios se ven en la app",
+          commentsOnlyAppBody:
+            "Por privacidad y seguridad, los comentarios y reseñas son visibles únicamente dentro de la app Luz Psíquica.",
+          openInApp: "Descargar la app",
           howTo: "Cómo consultar",
           infoProfile:
             "Este perfil es informativo. Para iniciar una consulta, descarga la app y selecciona a",
@@ -168,7 +174,6 @@ export default async function PsychicDetailPage({ params }: PageProps) {
 
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
-              // ✅ FIX
               href={`/${lang}/psychics`}
               className="rounded-2xl px-4 py-2 text-sm hover:opacity-90"
               style={{ ...insetCardStyle, background: "rgba(255,255,255,0.65)" }}
@@ -177,7 +182,6 @@ export default async function PsychicDetailPage({ params }: PageProps) {
             </Link>
 
             <Link
-              // ✅ FIX
               href={`/${lang}`}
               className="rounded-2xl px-4 py-2 text-sm hover:opacity-90"
               style={{ ...insetCardStyle, background: "rgba(255,255,255,0.65)" }}
@@ -205,7 +209,8 @@ export default async function PsychicDetailPage({ params }: PageProps) {
     );
   }
 
-  const displayName = psychic?.displayName ?? psychic?.psychicName ?? (lang === "en" ? "Psychic" : "Psíquico");
+  const displayName =
+    psychic?.displayName ?? psychic?.psychicName ?? (lang === "en" ? "Psychic" : "Psíquico");
   const isOnline = typeof psychic?.isOnline === "boolean" ? psychic.isOnline : undefined;
   const ratingAvg = typeof psychic?.ratingAvg === "number" ? psychic.ratingAvg : undefined;
   const reviewsCount = typeof psychic?.reviewsCount === "number" ? psychic.reviewsCount : undefined;
@@ -225,8 +230,7 @@ export default async function PsychicDetailPage({ params }: PageProps) {
   const experience: string | undefined =
     typeof psychic?.experience === "string" ? psychic.experience.trim() : undefined;
 
-  const about: string | undefined =
-    typeof psychic?.about === "string" ? psychic.about.trim() : undefined;
+  const about: string | undefined = typeof psychic?.about === "string" ? psychic.about.trim() : undefined;
 
   const photoSrc = resolvePhotoSrc((psychic as any)?.photoUrl ?? (psychic as any)?.photo ?? null);
   const isDataUri = typeof photoSrc === "string" && photoSrc.startsWith("data:image");
@@ -291,19 +295,26 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           </div>
 
           <div className="flex flex-wrap gap-3 lg:justify-end">
-            <a
-              href="#"
+            <Link
+              href={`/${lang}/download`}
               className="rounded-2xl px-5 py-2.5 text-sm font-medium hover:opacity-90"
-              style={{ background: "rgba(255,255,255,0.9)", color: "var(--lp-primary)", border: "1px solid var(--lp-border)" }}
+              style={{
+                background: "rgba(255,255,255,0.9)",
+                color: "var(--lp-primary)",
+                border: "1px solid var(--lp-border)",
+              }}
             >
               {t.download}
-            </a>
+            </Link>
 
             <Link
-              // ✅ FIX
               href={`/${lang}/psychics`}
               className="rounded-2xl px-5 py-2.5 text-sm hover:opacity-90"
-              style={{ background: "rgba(255,255,255,0.55)", color: "var(--lp-primary-2)", border: "1px solid var(--lp-border)" }}
+              style={{
+                background: "rgba(255,255,255,0.55)",
+                color: "var(--lp-primary-2)",
+                border: "1px solid var(--lp-border)",
+              }}
             >
               {t.viewCatalog}
             </Link>
@@ -343,13 +354,52 @@ export default async function PsychicDetailPage({ params }: PageProps) {
             </div>
           </div>
 
+          {/* ✅ Comentarios: solo visibles en la app */}
           <div className="mt-6 rounded-3xl p-6" style={insetCardStyle}>
             <h3 className="text-lg font-semibold" style={{ color: "var(--lp-primary)" }}>
               {t.comments}
             </h3>
-            <p className="mt-3 text-sm" style={{ opacity: 0.8 }}>
-              {t.noComments}
-            </p>
+
+            <div
+              className="mt-3 rounded-2xl p-4 text-sm"
+              style={{
+                border: "1px solid rgba(49,27,146,0.15)",
+                background: "rgba(49,27,146,0.06)",
+              }}
+            >
+              <p className="font-medium" style={{ color: "var(--lp-primary)" }}>
+                {t.commentsOnlyAppTitle}
+              </p>
+              <p className="mt-1" style={{ opacity: 0.85 }}>
+                {t.commentsOnlyAppBody}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link
+                  href={`/${lang}/download`}
+                  className="rounded-2xl px-4 py-2 text-sm font-medium hover:opacity-90"
+                  style={{
+                    background: "rgba(255,255,255,0.9)",
+                    color: "var(--lp-primary)",
+                    border: "1px solid var(--lp-border)",
+                  }}
+                >
+                  {t.openInApp}
+                </Link>
+
+                <Link
+                  href={`/${lang}/psychics`}
+                  className="rounded-2xl px-4 py-2 text-sm hover:opacity-90"
+                  style={{
+                    background: "rgba(255,255,255,0.55)",
+                    color: "var(--lp-primary-2)",
+                    border: "1px solid var(--lp-border)",
+                  }}
+                >
+                  {t.backCatalog}
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -362,19 +412,26 @@ export default async function PsychicDetailPage({ params }: PageProps) {
           </p>
 
           <div className="mt-5 flex flex-col gap-3">
-            <a
-              href="#"
+            <Link
+              href={`/${lang}/download`}
               className="rounded-2xl px-4 py-2 text-center text-sm font-medium hover:opacity-90"
-              style={{ background: "rgba(255,255,255,0.9)", color: "var(--lp-primary)", border: "1px solid var(--lp-border)" }}
+              style={{
+                background: "rgba(255,255,255,0.9)",
+                color: "var(--lp-primary)",
+                border: "1px solid var(--lp-border)",
+              }}
             >
               {t.download}
-            </a>
+            </Link>
 
             <Link
-              // ✅ FIX
               href={`/${lang}/psychics`}
               className="rounded-2xl px-4 py-2 text-center text-sm hover:opacity-90"
-              style={{ background: "rgba(255,255,255,0.55)", color: "var(--lp-primary-2)", border: "1px solid var(--lp-border)" }}
+              style={{
+                background: "rgba(255,255,255,0.55)",
+                color: "var(--lp-primary-2)",
+                border: "1px solid var(--lp-border)",
+              }}
             >
               {t.backCatalog}
             </Link>

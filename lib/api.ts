@@ -7,27 +7,33 @@ function trimSlashEnd(v: string) {
   return v.replace(/\/+$/, "");
 }
 
-// Si te pasan ".../api" lo dejamos como origin "..." y base ".../api"
 function normalizeApi(input: string) {
   const raw = trimSlashEnd(String(input || "").trim());
   if (!raw) return { origin: "", base: "" };
 
-  // Si termina en /api => origin sin /api
   if (raw.endsWith("/api")) {
     const origin = raw.slice(0, -4);
     return { origin, base: `${origin}/api` };
   }
 
-  // Si NO termina en /api => base = origin + /api
   return { origin: raw, base: `${raw}/api` };
 }
 
 const { origin: API_ORIGIN, base: API_BASE } = normalizeApi(process.env.NEXT_PUBLIC_API_URL || "");
 
 // PATH del endpoint (solo el path, no full url)
-export const PSYCHICS_PATH =
-  process.env.NEXT_PUBLIC_PSYCHICS_PATH || "/users/psychics"; 
-// ⚠️ Nota: aquí ahora es /users/psychics (sin /api) porque API_BASE ya tiene /api
+const RAW_PSYCHICS_PATH = process.env.NEXT_PUBLIC_PSYCHICS_PATH || "/users/psychics";
+
+// ✅ Blindaje: si alguien mete "/api/..." aquí, se lo quitamos
+function stripApiPrefix(path: string) {
+  const p = String(path || "").trim();
+  if (!p) return "/users/psychics";
+  if (p === "/api") return "/";
+  if (p.startsWith("/api/")) return p.slice(4); // quita "/api"
+  return p;
+}
+
+export const PSYCHICS_PATH = stripApiPrefix(RAW_PSYCHICS_PATH);
 
 export type Psychic = {
   _id?: string;
@@ -38,7 +44,6 @@ export type Psychic = {
   psychicName?: string;
   displayName?: string;
 
-  // photoUrl en web es el src final (url o data-uri)
   photoUrl?: string;
 
   photo?: string;
@@ -101,12 +106,10 @@ function isProbablyBase64(v: string) {
   const cleaned = s.replace(/\s+/g, "");
   if (!/^[A-Za-z0-9+/=]+$/.test(cleaned)) return false;
 
-  // múltiplo de 4 suele ser típico
   if (cleaned.length % 4 !== 0) return true;
   return true;
 }
 
-// ✅ IMPORTANTE: uploads se arma con API_ORIGIN (no con API_BASE)
 function buildPhotoSrc(rawPhoto: any): string | undefined {
   if (typeof rawPhoto !== "string") return undefined;
   const v0 = rawPhoto.trim();
@@ -114,32 +117,23 @@ function buildPhotoSrc(rawPhoto: any): string | undefined {
 
   const v = v0.replace(/\\/g, "/");
 
-  // data-uri
   if (isDataImageUri(v)) return v;
 
-  // base64 puro
   if (isProbablyBase64(v)) {
     const cleaned = v.replace(/\s+/g, "");
     return `data:image/jpeg;base64,${cleaned}`;
   }
 
-  // URL completa
   if (v.startsWith("http://") || v.startsWith("https://")) return v;
 
-  // si no hay origin, no podemos construir rutas
   if (!API_ORIGIN) return undefined;
 
-  // /uploads/...
   if (v.startsWith("/uploads/")) return `${API_ORIGIN}${v}`;
-
-  // uploads/...
   if (v.startsWith("uploads/")) return `${API_ORIGIN}/${v}`;
 
-  // contiene "/uploads/"
   const idx = v.indexOf("/uploads/");
   if (idx !== -1) return `${API_ORIGIN}${v.slice(idx)}`;
 
-  // solo filename (fallback)
   return `${API_ORIGIN}/uploads/psychics/${v.replace(/^\/+/, "")}`;
 }
 
@@ -159,12 +153,66 @@ function pickRawPhoto(p: any) {
   return null;
 }
 
+function toStringArray(value: any): string[] {
+  if (!value) return [];
+
+  // Si ya viene como array
+  if (Array.isArray(value)) {
+    return value
+      .map((v) => (typeof v === "string" ? v.trim() : ""))
+      .filter(Boolean);
+  }
+
+  // Si viene como string "Español, Inglés" o "Español / Inglés"
+  if (typeof value === "string") {
+    const s = value.trim();
+    if (!s) return [];
+    return s
+      .split(/[,/|·•]+/g)
+      .map((x) => x.trim())
+      .filter(Boolean);
+  }
+
+  // Si viene como objeto (raro), intentamos valores
+  if (typeof value === "object") {
+    const vals = Object.values(value);
+    return vals
+      .flatMap((v) => (typeof v === "string" ? [v] : Array.isArray(v) ? v : []))
+      .map((v) => (typeof v === "string" ? v.trim() : ""))
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+function pickLanguages(p: any): string[] {
+  // Prioridad: campos más probables
+  const candidates = [
+    p?.languages,
+    p?.languagesSpoken,
+    p?.spokenLanguages,
+    p?.idiomas,
+    p?.language,
+    p?.profile?.languages,
+    p?.profile?.idiomas,
+  ];
+
+  for (const c of candidates) {
+    const arr = toStringArray(c);
+    if (arr.length) return arr;
+  }
+
+  return [];
+}
+
 function normalizePsychic(p: any): Psychic {
   const publicName = p?.psychicName ?? p?.displayName ?? p?.alias ?? "";
   const slug = p?.slug ?? (publicName ? slugify(publicName) : undefined);
 
   const rawPhoto = pickRawPhoto(p);
   const photoUrl = buildPhotoSrc(rawPhoto);
+
+  const languages = pickLanguages(p);
 
   return {
     _id: p?._id,
@@ -180,7 +228,9 @@ function normalizePsychic(p: any): Psychic {
     photo: typeof p?.photo === "string" ? p.photo : undefined,
     avatar: typeof p?.avatar === "string" ? p.avatar : undefined,
 
-    languages: Array.isArray(p?.languages) ? p.languages : [],
+    // ✅ ahora robusto
+    languages,
+
     areas: Array.isArray(p?.areas) ? p.areas : [],
     areasOtherText: typeof p?.areasOtherText === "string" ? p.areasOtherText : undefined,
 
@@ -214,7 +264,6 @@ async function getJson(url: string) {
 export async function fetchPsychics(): Promise<Psychic[]> {
   if (!API_BASE) return [];
 
-  // ✅ API_BASE ya incluye /api, por eso PSYCHICS_PATH no debe iniciar con /api
   const url = `${API_BASE}${PSYCHICS_PATH.startsWith("/") ? "" : "/"}${PSYCHICS_PATH}`;
   const data = await getJson(url);
 
@@ -236,5 +285,4 @@ export async function fetchPsychicBySlug(slug: string): Promise<Psychic | null> 
   return list.find((p) => p.slug === slug) || null;
 }
 
-// Útil para debug en UI si quieres mostrarlo
 export const __API_DEBUG__ = { API_ORIGIN, API_BASE, PSYCHICS_PATH };
