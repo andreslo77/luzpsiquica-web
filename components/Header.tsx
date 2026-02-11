@@ -38,12 +38,6 @@ export default function Header() {
     router.push(nextPath);
   };
 
-  // ✅ NUEVO: URL de eliminación de cuenta (localizada)
-const accountDeletionHref =
-  safeLang === "en"
-    ? `${base}/legal/account-deletion`
-    : `${base}/legal/eliminacion-de-cuenta`;
-
   return (
     <header
       className="sticky top-0 z-50 border-b backdrop-blur"
@@ -77,9 +71,7 @@ const accountDeletionHref =
               Luz Psíquica
             </div>
             <div className="text-xs" style={{ color: "rgba(31,27,36,0.65)" }}>
-              {safeLang === "en"
-                ? "Modern spiritual guidance"
-                : "Orientación espiritual moderna"}
+              {safeLang === "en" ? "Modern spiritual guidance" : "Orientación espiritual moderna"}
             </div>
           </div>
         </Link>
@@ -105,10 +97,10 @@ const accountDeletionHref =
             Legal
           </Link>
 
-          {/* ✅ NUEVO: Link directo para Play Console (página pública) */}
+          {/* ✅ Link estable para Play Console / eliminación */}
           <Link
-            href={accountDeletionHref}
-            className="opacity-90 hover:opacity-100"
+            href={`${base}/legal/account-deletion`}
+            className="hover:opacity-100"
             style={{ color: "rgba(31,27,36,0.75)" }}
           >
             {safeLang === "en" ? "Account deletion" : "Eliminar cuenta"}
