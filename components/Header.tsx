@@ -38,6 +38,12 @@ export default function Header() {
     router.push(nextPath);
   };
 
+  // ✅ NUEVO: URL de eliminación de cuenta (localizada)
+const accountDeletionHref =
+  safeLang === "en"
+    ? `${base}/legal/account-deletion`
+    : `${base}/legal/eliminacion-de-cuenta`;
+
   return (
     <header
       className="sticky top-0 z-50 border-b backdrop-blur"
@@ -97,6 +103,15 @@ export default function Header() {
 
           <Link href={`${base}/legal`} className="opacity-90 hover:opacity-100">
             Legal
+          </Link>
+
+          {/* ✅ NUEVO: Link directo para Play Console (página pública) */}
+          <Link
+            href={accountDeletionHref}
+            className="opacity-90 hover:opacity-100"
+            style={{ color: "rgba(31,27,36,0.75)" }}
+          >
+            {safeLang === "en" ? "Account deletion" : "Eliminar cuenta"}
           </Link>
 
           <button
