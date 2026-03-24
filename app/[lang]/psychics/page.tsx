@@ -85,10 +85,6 @@ export default async function PsychicsPage({ params }: PageProps) {
           {t.p1}
         </p>
 
-        <p className="mt-1 text-xs" style={{ color: "rgba(31,27,36,0.55)" }}>
-          API_ORIGIN: {__API_DEBUG__.API_ORIGIN} | API_BASE: {__API_DEBUG__.API_BASE} | PATH:{" "}
-          {__API_DEBUG__.PSYCHICS_PATH}
-        </p>
       </div>
 
       {error && (
