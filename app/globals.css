@@ -21,25 +21,29 @@
   --lp-text: #1f1b24;
 
   /* Primarios */
-  --lp-primary: #311B92;     /* greeting */
-  --lp-primary-2: #4A148C;   /* botones/acentos */
-  --lp-accent: #7E57C2;      /* borde foto */
+  --lp-primary: #311B92;
+  --lp-primary-2: #4A148C;
+  --lp-accent: #7E57C2;
 
   /* Bordes/sombras suaves */
   --lp-border: rgba(49, 27, 146, 0.14);
   --lp-shadow: 0 10px 26px rgba(49, 27, 146, 0.12);
 
-  /* Tipografía (Geist setea estas variables en layout) */
+  /* Tipografía */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-html, body {
+html {
   color-scheme: light;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
   background: linear-gradient(
     180deg,
     var(--lp-bg-top) 0%,
@@ -50,8 +54,25 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-a { text-decoration: none; }
-* { -webkit-tap-highlight-color: transparent; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
 
 ::selection {
   background: rgba(126, 87, 194, 0.22);
