@@ -18,7 +18,7 @@ export default function Footer() {
             </p>
 
             <p style={{ color: "rgba(31,27,36,0.75)", maxWidth: 520 }}>
-              Orientación espiritual con confidencialidad, respeto y una experiencia moderna.
+              Claridad, conexión y guía para tu camino.
             </p>
 
             <p style={{ color: "rgba(31,27,36,0.60)" }}>

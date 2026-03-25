@@ -4,7 +4,7 @@ import { normalizeLang } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Luz Psíquica",
-  description: "Orientación espiritual moderna",
+  description: "Claridad, conexión y guía para tu camino",
 };
 
 export default async function LangLayout({

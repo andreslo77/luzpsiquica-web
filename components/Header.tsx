@@ -105,8 +105,8 @@ export default function Header() {
               style={{ color: "rgba(31,27,36,0.65)" }}
             >
               {safeLang === "en"
-                ? "Modern spiritual guidance"
-                : "Orientación espiritual moderna"}
+                ? "Clarity, connection, and guidance for your path"
+                : "Claridad, conexión y guía para tu camino"}
             </div>
           </div>
         </Link>

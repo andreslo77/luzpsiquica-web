@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Luz Psíquica",
-  description: "Orientación espiritual moderna",
+  description: "Claridad, conexión y guía para tu camino",
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",

@@ -14,8 +14,8 @@ export default async function LangHomePage({
     brand: "Luz Psíquica",
     title:
       lang === "en"
-        ? "Clear spiritual guidance, when you need it"
-        : "Orientación espiritual clara, cuando la necesitas",
+        ? "Clarity, connection, and guidance for your path"
+        : "Claridad, conexión y guía para tu camino",
     desc:
       lang === "en"
         ? "Connect with professional psychics for intuitive guidance through tarot, cards and other methods — directly from your phone."
