@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { normalizeLang } from "@/lib/i18n";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://luzpsiquica.com"),
   title: "Luz Psíquica",
   description: "Claridad, conexión y guía para tu camino",
 };
@@ -16,11 +17,7 @@ export default async function LangLayout({
 }) {
   const p = await Promise.resolve(params);
 
-  // Si ya tienes normalizeLang en lib/i18n, úsalo.
-  // Si normalizeLang no existe o no lo necesitas, puedes dejar la lógica simple.
-  const lang = normalizeLang ? normalizeLang(p?.lang) : (p?.lang === "en" ? "en" : "es");
+  const lang = normalizeLang ? normalizeLang(p?.lang) : p?.lang === "en" ? "en" : "es";
 
-  // Importante: en layouts anidados NO se debe renderizar <html> ni <body>.
-  // Tampoco Header/Footer aquí, para evitar duplicados.
   return <div data-lang={lang}>{children}</div>;
 }

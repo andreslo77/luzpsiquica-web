@@ -1,6 +1,7 @@
 // app/[lang]/psychics/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
-import { fetchPsychics, type Psychic, __API_DEBUG__ } from "@/lib/api";
+import { fetchPsychics, type Psychic } from "@/lib/api";
 import { normalizeLang } from "@/lib/i18n";
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -18,10 +19,6 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-// ✅ Soporta:
-// - URL http/https
-// - data:image/...;base64,xxxx
-// - base64 puro (xxxx) -> lo convierte a data:image/jpeg;base64,xxxx
 function resolvePhotoSrc(photo?: string | null) {
   if (!photo) return null;
 
@@ -37,6 +34,28 @@ function resolvePhotoSrc(photo?: string | null) {
 type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = normalizeLang(p?.lang);
+  const canonical = `https://luzpsiquica.com/${lang}/psychics`;
+
+  return {
+    title: lang === "en" ? "Psychics | Luz Psíquica" : "Psíquicos | Luz Psíquica",
+    description:
+      lang === "en"
+        ? "Explore the catalog of psychics available on Luz Psíquica and choose the profile that best fits your path."
+        : "Explora el catálogo de psíquicos disponibles en Luz Psíquica y elige el perfil que mejor se adapte a tu camino.",
+    alternates: {
+      canonical,
+      languages: {
+        es: "https://luzpsiquica.com/es/psychics",
+        en: "https://luzpsiquica.com/en/psychics",
+        "x-default": "https://luzpsiquica.com/es/psychics",
+      },
+    },
+  };
+}
 
 export default async function PsychicsPage({ params }: PageProps) {
   const p = await Promise.resolve(params);
@@ -71,7 +90,9 @@ export default async function PsychicsPage({ params }: PageProps) {
   try {
     psychics = await fetchPsychics();
   } catch (e: any) {
-    error = e?.message || (lang === "en" ? "Could not load the catalog." : "No se pudo cargar el catálogo.");
+    error =
+      e?.message ||
+      (lang === "en" ? "Could not load the catalog." : "No se pudo cargar el catálogo.");
   }
 
   return (
@@ -84,7 +105,6 @@ export default async function PsychicsPage({ params }: PageProps) {
         <p className="mt-2 text-sm" style={{ color: "rgba(31,27,36,0.80)" }}>
           {t.p1}
         </p>
-
       </div>
 
       {error && (
@@ -104,7 +124,8 @@ export default async function PsychicsPage({ params }: PageProps) {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {psychics.map((p) => {
-          const displayName = p.displayName || p.psychicName || p.name || (lang === "en" ? "Psychic" : "Psíquico");
+          const displayName =
+            p.displayName || p.psychicName || p.name || (lang === "en" ? "Psychic" : "Psíquico");
 
           const status =
             typeof p.isOnline === "boolean"
@@ -113,13 +134,13 @@ export default async function PsychicsPage({ params }: PageProps) {
                 : t.unavailable
               : null;
 
-          const hasRating = typeof p.ratingAvg === "number" || typeof p.reviewsCount === "number";
+          const hasRating =
+            typeof p.ratingAvg === "number" || typeof p.reviewsCount === "number";
           const photoSrc = resolvePhotoSrc((p as any)?.photoUrl ?? (p as any)?.photo ?? null);
 
           return (
             <Link
               key={p.slug}
-              // ✅ FIX: ahora incluye /{lang}
               href={`/${lang}/psychics/${encodeURIComponent(p.slug!)}`}
               className="rounded-3xl p-5 transition"
               style={{

@@ -1,10 +1,33 @@
 // app/[lang]/how-it-works/page.tsx
+import type { Metadata } from "next";
 import { normalizeLang } from "@/lib/i18n";
 import Link from "next/link";
 
 type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = normalizeLang(p?.lang);
+  const canonical = `https://luzpsiquica.com/${lang}/how-it-works`;
+
+  return {
+    title: lang === "en" ? "How it works | Luz Psíquica" : "Cómo funciona | Luz Psíquica",
+    description:
+      lang === "en"
+        ? "Learn how Luz Psíquica works: choose your psychic, consult from the app, and receive clear guidance."
+        : "Conoce cómo funciona Luz Psíquica: elige tu psíquico, consulta desde la app y recibe orientación clara.",
+    alternates: {
+      canonical,
+      languages: {
+        es: "https://luzpsiquica.com/es/how-it-works",
+        en: "https://luzpsiquica.com/en/how-it-works",
+        "x-default": "https://luzpsiquica.com/es/how-it-works",
+      },
+    },
+  };
+}
 
 export default async function HowItWorksPage({ params }: PageProps) {
   const p = await Promise.resolve(params);

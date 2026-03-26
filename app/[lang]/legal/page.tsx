@@ -1,4 +1,5 @@
 // app/[lang]/legal/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import { normalizeLang } from "@/lib/i18n";
 
@@ -34,6 +35,28 @@ function LegalCard({
 type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = normalizeLang(p?.lang);
+  const canonical = `https://luzpsiquica.com/${lang}/legal`;
+
+  return {
+    title: "Legal | Luz Psíquica",
+    description:
+      lang === "en"
+        ? "Review the legal and privacy documents of Luz Psíquica."
+        : "Consulta los documentos legales y de privacidad de Luz Psíquica.",
+    alternates: {
+      canonical,
+      languages: {
+        es: "https://luzpsiquica.com/es/legal",
+        en: "https://luzpsiquica.com/en/legal",
+        "x-default": "https://luzpsiquica.com/es/legal",
+      },
+    },
+  };
+}
 
 export default async function LegalPage({ params }: PageProps) {
   const p = await Promise.resolve(params);

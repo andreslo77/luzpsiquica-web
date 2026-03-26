@@ -1,9 +1,32 @@
 // app/[lang]/legal/account-deletion/page.tsx
+import type { Metadata } from "next";
 import { normalizeLang } from "@/lib/i18n";
 
 type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = normalizeLang(p?.lang);
+  const canonical = `https://luzpsiquica.com/${lang}/legal/account-deletion`;
+
+  return {
+    title: lang === "en" ? "Account deletion | Luz Psíquica" : "Eliminación de cuenta | Luz Psíquica",
+    description:
+      lang === "en"
+        ? "Learn how to request deletion of your Luz Psíquica account and associated data."
+        : "Conoce cómo solicitar la eliminación de tu cuenta y datos asociados en Luz Psíquica.",
+    alternates: {
+      canonical,
+      languages: {
+        es: "https://luzpsiquica.com/es/legal/account-deletion",
+        en: "https://luzpsiquica.com/en/legal/account-deletion",
+        "x-default": "https://luzpsiquica.com/es/legal/account-deletion",
+      },
+    },
+  };
+}
 
 export default async function AccountDeletionPage({ params }: PageProps) {
   const p = await Promise.resolve(params);

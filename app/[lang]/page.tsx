@@ -1,11 +1,38 @@
 // app/[lang]/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export default async function LangHomePage({
-  params,
-}: {
+type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
-}) {
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = p?.lang === "en" ? "en" : "es";
+  const canonical = `https://luzpsiquica.com/${lang}`;
+  const otherLang = lang === "en" ? "es" : "en";
+
+  return {
+    title:
+      lang === "en"
+        ? "Luz Psíquica | Clarity, connection, and guidance for your path"
+        : "Luz Psíquica | Claridad, conexión y guía para tu camino",
+    description:
+      lang === "en"
+        ? "Connect with professional psychics for intuitive guidance through tarot, cards and other methods — directly from your phone."
+        : "Conecta con psíquicos profesionales para guía intuitiva mediante tarot, cartas y otros métodos de orientación espiritual, directamente desde tu celular.",
+    alternates: {
+      canonical,
+      languages: {
+        es: "https://luzpsiquica.com/es",
+        en: "https://luzpsiquica.com/en",
+        "x-default": "https://luzpsiquica.com/es",
+      },
+    },
+  };
+}
+
+export default async function LangHomePage({ params }: PageProps) {
   const p = await Promise.resolve(params);
   const lang = p?.lang === "en" ? "en" : "es";
   const base = `/${lang}`;

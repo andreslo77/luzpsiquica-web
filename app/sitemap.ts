@@ -6,19 +6,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   const staticPaths = [
-    "",
-    "/es",
-    "/en",
-    "/es/psychics",
-    "/en/psychics",
-    "/es/how-it-works",
-    "/en/how-it-works",
-    "/es/legal",
-    "/en/legal",
-    "/es/legal/account-deletion",
-    "/en/legal/account-deletion",
-    "/es/download",
-    "/en/download",
+    { path: "", priority: 0.6, changeFrequency: "weekly" as const },
+    { path: "/es", priority: 1.0, changeFrequency: "weekly" as const },
+    { path: "/en", priority: 1.0, changeFrequency: "weekly" as const },
+
+    { path: "/es/psychics", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/en/psychics", priority: 0.9, changeFrequency: "weekly" as const },
+
+    { path: "/es/how-it-works", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/en/how-it-works", priority: 0.8, changeFrequency: "monthly" as const },
+
+    { path: "/es/legal", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/en/legal", priority: 0.7, changeFrequency: "monthly" as const },
+
+    { path: "/es/legal/account-deletion", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/en/legal/account-deletion", priority: 0.7, changeFrequency: "monthly" as const },
+
+    { path: "/es/download", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/en/download", priority: 0.9, changeFrequency: "weekly" as const },
+
+    // Inclúyelas solo si estas rutas sí existen físicamente
+    { path: "/es/legal/normas-y-privacidad", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/en/legal/normas-y-privacidad", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/es/legal/documento-operativo", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/en/legal/documento-operativo", priority: 0.7, changeFrequency: "monthly" as const },
   ];
 
   const psychicSlugs = [
@@ -32,17 +43,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "iveth",
     "crystal",
     "saturnia",
-    // agrega aquí los próximos slugs
-    // "frida",
-    // "juan",
   ];
 
-  const staticUrls: MetadataRoute.Sitemap = staticPaths.map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified,
-    changeFrequency: "weekly",
-    priority: path === "" || path === "/es" || path === "/en" ? 1 : 0.8,
-  }));
+  const staticUrls: MetadataRoute.Sitemap = staticPaths.map(
+    ({ path, priority, changeFrequency }) => ({
+      url: `${baseUrl}${path}`,
+      lastModified,
+      changeFrequency,
+      priority,
+    })
+  );
 
   const psychicUrls: MetadataRoute.Sitemap = psychicSlugs.flatMap((slug) => [
     {

@@ -1,4 +1,5 @@
 // app/[lang]/psychics/[slug]/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchPsychics } from "@/lib/api";
@@ -40,7 +41,6 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   );
 }
 
-// ✅ Soporta URL / data-uri / base64 puro
 function resolvePhotoSrc(photo?: string | null) {
   if (!photo) return null;
 
@@ -51,6 +51,53 @@ function resolvePhotoSrc(photo?: string | null) {
   if (raw.startsWith("data:image")) return raw;
 
   return `data:image/jpeg;base64,${raw}`;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const p = await Promise.resolve(params);
+  const lang = normalizeLang(p?.lang);
+
+  const rawSlug = typeof p?.slug === "string" ? p.slug : "";
+  const decodedSlug = rawSlug ? decodeURIComponent(rawSlug) : "";
+  const normalizedSlug = slugify(decodedSlug);
+
+  const psychics = await fetchPsychics();
+
+  const psychic =
+    psychics.find((pp: any) => (pp?.slug ? slugify(String(pp.slug)) : "") === normalizedSlug) ??
+    psychics.find((pp: any) => {
+      const publicName = pp?.psychicName ?? pp?.displayName ?? pp?.alias ?? "";
+      return publicName ? slugify(String(publicName)) === normalizedSlug : false;
+    }) ??
+    null;
+
+  const finalSlug = psychic?.slug ? slugify(String(psychic.slug)) : normalizedSlug;
+
+  const displayName =
+    psychic?.displayName ?? psychic?.psychicName ?? (lang === "en" ? "Psychic" : "Psíquico");
+
+  const canonical = `https://luzpsiquica.com/${lang}/psychics/${finalSlug}`;
+  const esUrl = `https://luzpsiquica.com/es/psychics/${finalSlug}`;
+  const enUrl = `https://luzpsiquica.com/en/psychics/${finalSlug}`;
+
+  return {
+    title:
+      lang === "en"
+        ? `${displayName} | Psychic profile | Luz Psíquica`
+        : `${displayName} | Perfil psíquico | Luz Psíquica`,
+    description:
+      lang === "en"
+        ? `View ${displayName}'s profile on Luz Psíquica and discover their specialties, tools, and guidance style.`
+        : `Consulta el perfil de ${displayName} en Luz Psíquica y conoce sus especialidades, herramientas y estilo de orientación.`,
+    alternates: {
+      canonical,
+      languages: {
+        es: esUrl,
+        en: enUrl,
+        "x-default": esUrl,
+      },
+    },
+  };
 }
 
 export default async function PsychicDetailPage({ params }: PageProps) {
@@ -230,7 +277,8 @@ export default async function PsychicDetailPage({ params }: PageProps) {
   const experience: string | undefined =
     typeof psychic?.experience === "string" ? psychic.experience.trim() : undefined;
 
-  const about: string | undefined = typeof psychic?.about === "string" ? psychic.about.trim() : undefined;
+  const about: string | undefined =
+    typeof psychic?.about === "string" ? psychic.about.trim() : undefined;
 
   const photoSrc = resolvePhotoSrc((psychic as any)?.photoUrl ?? (psychic as any)?.photo ?? null);
   const isDataUri = typeof photoSrc === "string" && photoSrc.startsWith("data:image");
@@ -354,7 +402,6 @@ export default async function PsychicDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* ✅ Comentarios: solo visibles en la app */}
           <div className="mt-6 rounded-3xl p-6" style={insetCardStyle}>
             <h3 className="text-lg font-semibold" style={{ color: "var(--lp-primary)" }}>
               {t.comments}
