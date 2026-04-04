@@ -1,4 +1,3 @@
-// components/Header.tsx
 "use client";
 
 import Link from "next/link";
@@ -142,7 +141,7 @@ export default function Header() {
             className="hover:opacity-100"
             style={{ color: "rgba(31,27,36,0.75)" }}
           >
-            {safeLang === "en" ? "Account deletion" : "Eliminar cuenta"}
+            {safeLang === "en" ? "Support" : "Soporte"}
           </Link>
 
           <button
@@ -263,7 +262,7 @@ export default function Header() {
                 border: "1px solid var(--lp-border)",
               }}
             >
-              {safeLang === "en" ? "Account deletion" : "Eliminar cuenta"}
+              {safeLang === "en" ? "Support" : "Soporte"}
             </Link>
 
             <div className="mt-2 flex flex-col gap-2 sm:flex-row">

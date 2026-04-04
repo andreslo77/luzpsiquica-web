@@ -1,4 +1,3 @@
-// app/[lang]/legal/account-deletion/page.tsx
 import type { Metadata } from "next";
 import { normalizeLang } from "@/lib/i18n";
 
@@ -6,17 +5,21 @@ type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
 
+const SUPPORT_EMAIL = "luzpsiquica1@gmail.com";
+const WHATSAPP_DISPLAY = "+1 (813) 618-7770";
+const WHATSAPP_LINK = "https://wa.me/18136187770";
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const p = await Promise.resolve(params);
   const lang = normalizeLang(p?.lang);
   const canonical = `https://luzpsiquica.com/${lang}/legal/account-deletion`;
 
   return {
-    title: lang === "en" ? "Account deletion | Luz Psíquica" : "Eliminación de cuenta | Luz Psíquica",
+    title: lang === "en" ? "Support | Luz Psíquica" : "Soporte | Luz Psíquica",
     description:
       lang === "en"
-        ? "Learn how to request deletion of your Luz Psíquica account and associated data."
-        : "Conoce cómo solicitar la eliminación de tu cuenta y datos asociados en Luz Psíquica.",
+        ? "Contact Luz Psíquica support through WhatsApp or email for account help, general assistance, and support requests."
+        : "Contacta al soporte de Luz Psíquica por WhatsApp o correo para ayuda con tu cuenta, asistencia general y solicitudes de soporte.",
     alternates: {
       canonical,
       languages: {
@@ -37,71 +40,103 @@ export default async function AccountDeletionPage({ params }: PageProps) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
       <h1 className="text-3xl font-semibold" style={{ color: "var(--lp-primary)" }}>
-        {isEn ? "Account deletion" : "Eliminación de cuenta"}
+        {isEn ? "Support" : "Soporte"}
       </h1>
 
-      <p className="mt-3 text-sm" style={{ color: "rgba(31,27,36,0.80)" }}>
+      <p className="mt-3 text-sm leading-7" style={{ color: "rgba(31,27,36,0.80)" }}>
         {isEn ? (
           <>
-            This page explains how to request deletion of your account and associated data on{" "}
-            <strong>Luz Psíquica</strong>. For entertainment purposes only.
+            This page provides the official support channels for <strong>Luz Psíquica</strong>.
+            You may contact us for general assistance, account-related questions, and support
+            requests.
           </>
         ) : (
           <>
-            Esta página explica cómo solicitar la eliminación de tu cuenta y de los datos asociados en{" "}
-            <strong>Luz Psíquica</strong>. Solo entretenimiento.
+            Esta página presenta los canales oficiales de soporte de <strong>Luz Psíquica</strong>.
+            Puedes comunicarte con nosotros para asistencia general, consultas relacionadas con tu
+            cuenta y solicitudes de soporte.
           </>
         )}
       </p>
 
       <h2 className="mt-8 text-xl font-semibold" style={{ color: "var(--lp-primary)" }}>
-        {isEn ? "How to request deletion" : "Cómo solicitar la eliminación"}
+        {isEn ? "Contact" : "Contacto"}
       </h2>
 
-      <ol
-        className="mt-3 list-decimal pl-6 text-sm leading-7"
-        style={{ color: "rgba(31,27,36,0.85)" }}
-      >
-        <li>
-          {isEn ? "Email" : "Envía un correo a"}{" "}
-          <a className="underline" href="mailto:luzpsiquica1@gmail.com">
-            luzpsiquica1@gmail.com
-          </a>
-        </li>
-        <li>
-          {isEn ? (
-            <>
-              Subject: <strong>“Delete account - Luz Psíquica”</strong>
-            </>
-          ) : (
-            <>
-              En el asunto escribe: <strong>“Eliminar cuenta - Luz Psíquica”</strong>
-            </>
-          )}
-        </li>
-        <li>
-          {isEn
-            ? "Include the identifier you used to sign up (email or username) and explicitly request account deletion."
-            : "En el mensaje incluye el dato con el que te registraste (correo o usuario) y solicita explícitamente la eliminación."}
-        </li>
-      </ol>
-
-      <h2 className="mt-8 text-xl font-semibold" style={{ color: "var(--lp-primary)" }}>
-        {isEn ? "Timeframes" : "Plazos"}
-      </h2>
       <p className="mt-3 text-sm leading-7" style={{ color: "rgba(31,27,36,0.85)" }}>
-        {isEn
-          ? "We process requests within a reasonable timeframe. Timing may vary depending on minimal security verification and applicable legal obligations."
-          : "Procesaremos la solicitud en un plazo razonable. El tiempo puede variar según verificación mínima de seguridad y obligaciones legales aplicables."}
+        {isEn ? (
+          <>
+            For any question, complaint, claim, or inquiry related to the operation of the app,
+            users may contact Luz Psíquica through the support channels listed below.
+          </>
+        ) : (
+          <>
+            Para cualquier duda, queja, reclamo o consulta relacionada con el funcionamiento de la
+            aplicación, el usuario podrá comunicarse con Luz Psíquica a través de los canales de
+            soporte indicados a continuación.
+          </>
+        )}
       </p>
 
-      <h2 className="mt-8 text-xl font-semibold" style={{ color: "var(--lp-primary)" }}>
-        {isEn ? "Limited retention" : "Conservación limitada"}
-      </h2>
       <p className="mt-3 text-sm leading-7" style={{ color: "rgba(31,27,36,0.85)" }}>
-        {isEn
-          ? "We may retain limited records when required for legal, tax, accounting, or anti-fraud purposes (e.g., payment receipts and minimal transaction logs), only for the period required by applicable law."
-          : "Algunos datos podrán conservarse únicamente cuando exista una obligación legal, fiscal o contable (por ejemplo, comprobantes de pago y registros mínimos antifraude), y solo durante el período exigido por la normativa aplicable."}
+        {isEn ? (
+          <>
+            Communications received will be handled according to the app’s internal procedures and
+            within reasonable timeframes, depending on the nature of the request.
+          </>
+        ) : (
+          <>
+            Las comunicaciones recibidas serán atendidas conforme a los procedimientos internos de
+            la aplicación y dentro de los plazos razonables, según la naturaleza de la solicitud.
+          </>
+        )}
+      </p>
+
+      <div className="mt-6 flex flex-col gap-4">
+        <a
+          href={`mailto:${SUPPORT_EMAIL}`}
+          className="inline-flex w-fit rounded-2xl border px-6 py-4 text-base font-medium transition hover:opacity-90"
+          style={{
+            color: "var(--lp-primary)",
+            borderColor: "rgba(103,80,164,0.28)",
+            background: "rgba(103,80,164,0.08)",
+          }}
+        >
+          {isEn ? `Email: ${SUPPORT_EMAIL}` : `Email: ${SUPPORT_EMAIL}`}
+        </a>
+
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-fit rounded-2xl border px-6 py-4 text-base font-medium transition hover:opacity-90"
+          style={{
+            color: "var(--lp-primary)",
+            borderColor: "rgba(103,80,164,0.28)",
+            background: "rgba(103,80,164,0.08)",
+          }}
+        >
+          {isEn ? `WhatsApp: ${WHATSAPP_DISPLAY}` : `WhatsApp: ${WHATSAPP_DISPLAY}`}
+        </a>
+      </div>
+
+      <h2 className="mt-10 text-xl font-semibold" style={{ color: "var(--lp-primary)" }}>
+        {isEn ? "Account help" : "Ayuda con la cuenta"}
+      </h2>
+
+      <p className="mt-3 text-sm leading-7" style={{ color: "rgba(31,27,36,0.85)" }}>
+        {isEn ? (
+          <>
+            If you need help with your account, including account deletion-related guidance, you may
+            contact us through the support channels above.
+          </>
+        ) : (
+          <>
+            Si necesitas ayuda con tu cuenta, incluida orientación relacionada con la eliminación de
+            cuenta, puedes comunicarte con nosotros a través de los canales de soporte indicados
+            anteriormente.
+          </>
+        )}
       </p>
     </div>
   );
