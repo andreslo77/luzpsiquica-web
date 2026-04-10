@@ -92,12 +92,16 @@ export const LEGAL_DOCS: Record<
             "En ningún caso la responsabilidad de Luz Psíquica excederá el valor efectivamente pagado por el usuario dentro de la aplicación por los servicios objeto de reclamación, ni dará lugar a indemnizaciones por daños morales, lucro cesante, pérdida de oportunidades, expectativas no cumplidas u otros perjuicios indirectos.\n",
         },
         {
-          title: "8. Reembolsos",
+          title: "8. Naturaleza del servicio y carácter no reembolsable",
           body:
-            "Los reembolsos, en caso de aplicar, no son automáticos ni garantizados y estarán sujetos a un proceso de revisión y validación interna por parte de Luz Psíquica, de conformidad con sus controles operativos y mecanismos de prevención de fraude y abuso.\n\n" +
-            "La plataforma se reserva el derecho de negar total o parcialmente cualquier solicitud de reembolso cuando existan indicios de uso indebido, fraude, abuso del sistema, intento de elusión de controles, incumplimiento de las normas de la plataforma o comportamientos contrarios a los términos y condiciones establecidos.\n\n" +
-            "Cuando un reembolso sea considerado procedente, la evaluación se realizará teniendo en cuenta, entre otros factores, el saldo de minutos no consumidos, el historial de uso del usuario, el tiempo efectivo de utilización del servicio y los registros internos de la plataforma.\n\n" +
-            "Las decisiones relacionadas con reembolsos se adoptarán con criterios operativos, técnicos y de seguridad, y no generarán derecho a compensaciones adicionales, intereses, indemnizaciones ni reclamaciones distintas al alcance del reembolso eventualmente concedido.\n",
+            "Los minutos adquiridos dentro de la plataforma Luz Psíquica constituyen créditos digitales de uso exclusivo dentro del ecosistema del servicio y no representan dinero en efectivo, depósitos, saldos retirables, instrumentos financieros ni valores transferibles.\n\n" +
+            "En consecuencia, todas las compras de minutos realizadas dentro de la aplicación son finales, definitivas y no reembolsables, incluyendo aquellos casos en los que el usuario decida no utilizar total o parcialmente los minutos adquiridos.\n\n" +
+            "El no uso del servicio por parte del usuario, ya sea total o parcial, no genera derecho a devolución de dinero, compensación, indemnización ni reconocimiento económico de ninguna naturaleza.\n\n" +
+            "Los minutos no pueden ser convertidos en dinero, transferidos a terceros, retirados de la plataforma ni reclamados como saldo a favor fuera del entorno de Luz Psíquica.\n\n" +
+            "El usuario reconoce expresamente que, al realizar una compra dentro de la plataforma, adquiere un servicio digital de consumo inmediato o bajo demanda, y renuncia, en la medida permitida por la ley aplicable, a cualquier derecho de retracto, desistimiento o devolución posterior.\n\n" +
+            "Excepcionalmente, la plataforma podrá evaluar solicitudes únicamente cuando existan fallas técnicas comprobables, atribuibles directamente a Luz Psíquica, que hayan impedido de manera efectiva la prestación del servicio. En tales casos, cualquier medida se limitará estrictamente a la corrección del error o a la reposición proporcional del servicio dentro de la plataforma, sin que ello implique devolución monetaria.\n\n" +
+            "La plataforma se reserva el derecho de rechazar cualquier solicitud cuando existan indicios de fraude, abuso, uso indebido del sistema, intento de elusión de controles, manipulación técnica o incumplimiento de las normas establecidas.\n\n" +
+            "Las decisiones adoptadas por Luz Psíquica en relación con estas disposiciones serán definitivas dentro del ámbito operativo de la plataforma y no generarán derecho a compensaciones adicionales, intereses, indemnizaciones ni reclamaciones distintas a los ajustes técnicos que, en caso de proceder, se determinen.\n",
         },
         {
           title: "9. Faltas graves",
@@ -110,8 +114,10 @@ export const LEGAL_DOCS: Record<
           title: "10. Retiro voluntario del cliente",
           body:
             "El cliente podrá solicitar su retiro voluntario de la plataforma, el cual deberá ser comunicado con una antelación mínima de cinco (5) días calendario.\n\n" +
-            "El eventual reembolso del valor correspondiente a minutos no consumidos no es automático ni garantizado, y estará sujeto a un proceso de revisión y validación interna por parte de Luz Psíquica, de conformidad con sus controles operativos y mecanismos de prevención de fraude y abuso.\n\n" +
-            "La solicitud de retiro voluntario y su eventual validación no dará lugar a compensaciones adicionales, intereses, indemnizaciones ni reclamaciones distintas al alcance del reembolso que, en caso de proceder, sea aprobado por la plataforma.\n",
+            "El retiro voluntario del usuario no genera derecho a reembolso de los valores pagados por minutos no consumidos, ni a compensaciones, indemnizaciones o devoluciones de dinero de ninguna naturaleza.\n\n" +
+            "Los minutos disponibles al momento del retiro no podrán ser convertidos en dinero, transferidos ni reclamados como saldo a favor fuera de la plataforma.\n\n" +
+            "La solicitud de retiro y su procesamiento se realizarán conforme a los procedimientos internos de Luz Psíquica, sin que ello implique obligación de reconocimiento económico alguno por parte de la plataforma.\n\n" +
+            "La eliminación de la cuenta o la desvinculación del usuario no modifica la naturaleza no reembolsable de los servicios adquiridos previamente.\n",
         },
         {
           title: "11. Uso de tecnologías incorporadas del dispositivo",
