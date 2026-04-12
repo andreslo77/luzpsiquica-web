@@ -211,6 +211,11 @@ export const LEGAL_DOCS: Record<
             "• Está prohibido sacar la relación comercial fuera de la plataforma.\n" +
             "• El incumplimiento puede implicar suspensión o cierre.",
         },
+        {
+          title: "5.3 No reembolso, no retiro y no transferencia",
+          body:
+            "Todas las compras de minutos son finales y no reembolsables, salvo supuestos excepcionales de falla técnica comprobable atribuible directamente a la plataforma. Los minutos adquiridos no pueden ser retirados, convertidos en dinero, transferidos a terceros ni reclamados como devolución por falta de uso voluntario del servicio. El no uso total o parcial de los minutos no genera derecho a reembolso, compensación, indemnización ni reconocimiento económico de ninguna naturaleza. En caso de incidente técnico validado por Luz Psíquica, cualquier medida correctiva se limitará estrictamente a un ajuste técnico interno o a la reposición proporcional del servicio, sin obligación de devolución monetaria.",
+        },
 
         { title: "6. Validación y funcionamiento del rol psíquico", body: "" },
         {
@@ -493,6 +498,11 @@ export const LEGAL_DOCS: Record<
             "• Exchanging personal or contact information is prohibited.\n" +
             "• Taking the commercial relationship outside the platform is prohibited.\n" +
             "• Violations may result in suspension or closure.",
+        },
+        {
+          title: "5.3 No Refunds, No Withdrawal and No Transfers",
+          body:
+            "All minute purchases are final and non-refundable, except in exceptional cases of verifiable technical failure directly attributable to the platform. Purchased minutes cannot be withdrawn, converted into money, transferred to third parties, or claimed for refund due to voluntary non-use of the service. Full or partial non-use of the minutes does not entitle the user to any refund, compensation, indemnification, or financial recognition of any kind. In the event of a validated technical incident by Luz Psíquica, any corrective action shall be strictly limited to an internal technical adjustment or proportional service replacement, without any obligation of monetary refund.",
         },
 
         { title: "6. Validation and operation of the psychic role", body: "" },
