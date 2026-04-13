@@ -13,6 +13,7 @@ const content = {
     playTitle: "Google Play",
     playText: "Descarga la app móvil",
     playButton: "Disponible en Google Play",
+    playBadge: "/google-play-es.svg",
   },
   en: {
     title: "Download the app",
@@ -23,6 +24,7 @@ const content = {
     playTitle: "Google Play",
     playText: "Download the mobile app",
     playButton: "Get it on Google Play",
+    playBadge: "/google-play-en.svg",
   },
 };
 
@@ -37,7 +39,6 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        {/* WEB APP */}
         <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-6">
           <p className="font-medium">{t.webTitle}</p>
           <p className="text-sm opacity-70">{t.webText}</p>
@@ -52,7 +53,6 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
           </a>
         </div>
 
-        {/* GOOGLE PLAY */}
         <div className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/5 p-6">
           <p className="font-medium">{t.playTitle}</p>
           <p className="text-sm opacity-70">{t.playText}</p>
@@ -61,15 +61,11 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
             href="https://play.google.com/store/apps/details?id=com.luzpsiquica.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 flex w-fit flex-col gap-3 rounded-2xl border border-white/10 bg-black/20 p-3 transition hover:bg-black/30"
             aria-label={t.playButton}
+            className="mt-2 inline-block w-fit transition hover:opacity-90"
           >
             <img
-              src={
-                lang === "en"
-                  ? "https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                  : "https://upload.wikimedia.org/wikipedia/commons/8/8f/Get_it_on_Google_Play_Badge_Web_color_Spanish.png"
-              }
+              src={t.playBadge}
               alt={t.playButton}
               className="h-14 w-auto"
             />
