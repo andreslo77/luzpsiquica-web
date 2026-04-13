@@ -62,12 +62,12 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t.playButton}
-            className="mt-2 inline-block transition hover:scale-105"
+            className="mt-2 inline-block transition hover:opacity-90"
           >
             <img
               src={t.playBadge}
               alt={t.playButton}
-              className="h-10 w-auto"
+              className="block max-h-12 w-auto max-w-[220px]"
             />
           </a>
         </div>
