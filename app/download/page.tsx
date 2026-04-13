@@ -67,7 +67,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
             <img
               src={t.playBadge}
               alt={t.playButton}
-              className="h-14 w-auto"
+              className="h-10 w-auto"
             />
           </a>
         </div>
