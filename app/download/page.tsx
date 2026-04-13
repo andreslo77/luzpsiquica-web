@@ -13,7 +13,7 @@ const content = {
     playTitle: "Google Play",
     playText: "Descarga la app móvil",
     playButton: "Disponible en Google Play",
-    playBadge: "/GetItOnGooglePlay_Badge_Web_color_Spanish-LATAM.svg",
+     playBadge: "/google-play-es.png",
   },
   en: {
     title: "Download the app",
@@ -24,7 +24,7 @@ const content = {
     playTitle: "Google Play",
     playText: "Download the mobile app",
     playButton: "Get it on Google Play",
-    playBadge: "/GetItOnGooglePlay_Badge_Web_color_English.svg",
+    playBadge: "/google-play-en.png",
   },
 };
 
