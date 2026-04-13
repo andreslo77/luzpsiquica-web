@@ -9,14 +9,20 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const p = await Promise.resolve(params);
   const lang = p?.lang === "en" ? "en" : "es";
+
   const canonical = `https://luzpsiquica.com/${lang}/download`;
 
   return {
-    title: lang === "en" ? "Download the app | Luz Psíquica" : "Descargar la app | Luz Psíquica",
+    title:
+      lang === "en"
+        ? "Use or download Luz Psíquica | Web & App"
+        : "Usa o descarga Luz Psíquica | Web y App",
+
     description:
       lang === "en"
-        ? "Download Luz Psíquica and connect with professional psychics from your phone."
-        : "Descarga Luz Psíquica y conecta con psíquicos profesionales desde tu celular.",
+        ? "Access Luz Psíquica from your browser or download the app on Google Play to connect with professional psychics."
+        : "Accede a Luz Psíquica desde tu navegador o descarga la app en Google Play para conectar con psíquicos profesionales.",
+
     alternates: {
       canonical,
       languages: {
