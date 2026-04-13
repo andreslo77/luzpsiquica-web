@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     description:
       lang === "en"
-        ? "Access Luz Psíquica from your browser or celular or download the app on Google Play to connect with professional psychics."
+        ? "Access Luz Psíquica from your browser or movil device, or download the app on Google Play to connect with professional psychics."
         : "Accede a Luz Psíquica desde tu navegador o celular o descarga la app en Google Play para conectar con psíquicos profesionales.",
 
     alternates: {
