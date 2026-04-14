@@ -6,9 +6,9 @@ type DownloadPageProps = {
 const content = {
   es: {
     title: "Descargar la app",
-    subtitle: "Accede a Luz Psíquica desde tu navegador o celular, o descarga la app móvil.",
+    subtitle: "Accede a Luz Psíquica desde tu navegador o descarga la app móvil.",
     webTitle: "Web-app",
-    webText: "Accede desde tu navegador",
+    webText: "Accede desde tu navegador en cualquier dispositivo",
     webButton: "Abrir web-app",
     playTitle: "Google Play",
     playText: "Descarga la app móvil",
@@ -17,9 +17,9 @@ const content = {
   },
   en: {
     title: "Download the app",
-    subtitle: "Access Luz Psíquica from your browser or mobile device, or download the app.",
+    subtitle: "Access Luz Psíquica from your browser or download the app.",
     webTitle: "Web app",
-    webText: "Access from your browser",
+    webText: "Access it from your browser on any device",
     webButton: "Open web app",
     playTitle: "Google Play",
     playText: "Download the mobile app",
