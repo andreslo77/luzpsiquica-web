@@ -111,11 +111,12 @@ export const LEGAL_DOCS: Record<
         {
           title: "10. Retiro voluntario del cliente",
           body:
-            "El cliente podrá solicitar su retiro voluntario de la plataforma, el cual deberá ser comunicado con una antelación mínima de cinco (5) días calendario.\n\n" +
-            "El retiro voluntario del usuario no genera derecho a reembolso de los valores pagados por minutos no consumidos, ni a compensaciones, indemnizaciones o devoluciones de dinero de ninguna naturaleza.\n\n" +
+            "El usuario podrá solicitar en cualquier momento el retiro voluntario de la plataforma mediante el uso de los mecanismos y herramientas habilitados dentro de la aplicación.\n\n" +
+            "Una vez realizada la solicitud y confirmada de manera expresa por el usuario, la eliminación de la cuenta se efectuará de forma inmediata, dando por terminada la relación entre el usuario y la plataforma, sin perjuicio del cumplimiento de las obligaciones previamente adquiridas.\n\n" +
+            "El retiro voluntario no genera, en ningún caso, derecho a reembolso, compensación, indemnización ni devolución de los valores pagados por servicios adquiridos, incluidos los minutos no consumidos al momento de la eliminación de la cuenta.\n\n" +
             "Los minutos disponibles al momento del retiro no podrán ser convertidos en dinero, transferidos ni reclamados como saldo a favor fuera de la plataforma.\n\n" +
-            "La solicitud de retiro y su procesamiento se realizarán conforme a los procedimientos internos de Luz Psíquica, sin que ello implique obligación de reconocimiento económico alguno por parte de la plataforma.\n\n" +
-            "La eliminación de la cuenta o la desvinculación del usuario no modifica la naturaleza no reembolsable de los servicios adquiridos previamente.\n",
+            "El usuario reconoce y acepta expresamente que los servicios adquiridos tienen carácter no reembolsable, y que esta condición ha sido informada de manera clara y previa al uso de la plataforma.\n\n" +
+            "La solicitud de retiro y su procesamiento se realizarán conforme a los procedimientos internos de Luz Psíquica, sin que ello implique obligación de reconocimiento económico alguno por parte de la plataforma.\n",
         },
         {
           title: "11. Uso de tecnologías incorporadas del dispositivo",
@@ -406,9 +407,12 @@ export const LEGAL_DOCS: Record<
         {
           title: "10. Voluntary withdrawal by the client",
           body:
-            "The client may request voluntary withdrawal from the platform, which must be communicated with a minimum of five (5) calendar days’ prior notice.\n\n" +
-            "Any potential refund corresponding to unused minutes is neither automatic nor guaranteed and shall be subject to an internal review and validation process carried out by Luz Psíquica, in accordance with its operational controls and fraud and abuse prevention mechanisms.\n\n" +
-            "The voluntary withdrawal request and its potential validation shall not give rise to additional compensation, interest, indemnification, or claims beyond the scope of any refund that may be approved by the platform.\n",
+            "The user may request voluntary withdrawal from the platform at any time through the mechanisms and tools made available within the application.\n\n" +
+            "Once the request has been submitted and expressly confirmed by the user, the account will be immediately deleted, thereby terminating the relationship between the user and the platform, without prejudice to the fulfillment of previously acquired obligations.\n\n" +
+            "Voluntary withdrawal does not, under any circumstances, give rise to any right to refund, compensation, indemnification, or reimbursement of amounts paid for acquired services, including unused minutes at the time of account deletion.\n\n" +
+            "Any remaining minutes at the time of withdrawal cannot be converted into money, transferred, or claimed as a balance outside the platform.\n\n" +
+            "The user expressly acknowledges and agrees that the services acquired are non-refundable in nature, and that this condition has been clearly communicated prior to the use of the platform.\n\n" +
+            "The withdrawal request and its processing shall be carried out in accordance with the internal procedures of Luz Psíquica, without implying any obligation of financial compensation on the part of the platform.\n",
         },
         {
           title: "11. Use of built-in device technologies",
