@@ -25,7 +25,7 @@ export const LEGAL_DOCS: Record<
   es: {
     NORMAS: {
       title: "Normas y Privacidad",
-      version: "2026-01-04",
+      version: "2026-04-24",
       owner: "Claudia Loaiza",
       jurisdiction: "Colombia",
       email: "luzpsiquica1@gmail.com",
@@ -139,7 +139,7 @@ export const LEGAL_DOCS: Record<
     OPERATIVO: {
       title: "Documento de Funcionamiento Operativo de la Plataforma",
       version: "1.1",
-      date: "2026-01-07",
+      date: "2026-01-04",
       platform: "Aplicación móvil Luz Psíquica",
       // Si quieres, aquí puedes poner los mismos datos de contacto que en NORMAS
       email: "luzpsiquica1@gmail.com",
@@ -317,7 +317,7 @@ export const LEGAL_DOCS: Record<
   en: {
     NORMAS: {
       title: "Rules & Privacy",
-      version: "2026-01-04",
+      version: "2026-04-24",
       owner: "Claudia Loaiza",
       jurisdiction: "Colombia",
       email: "luzpsiquica1@gmail.com",
