@@ -18,7 +18,7 @@ const content = {
     playButton: "Disponible en Google Play",
     playBadge: "/google-play-es.png",
     appStoreButton: "Descargar en App Store",
-    appStoreBadge: "/app-store-es.svg",
+    appStoreBadge: "/app-store-es.png",
   },
   en: {
     title: "Download the app",
@@ -33,7 +33,7 @@ const content = {
     playButton: "Get it on Google Play",
     playBadge: "/google-play-en.png",
     appStoreButton: "Download on the App Store",
-    appStoreBadge: "/app-store-en.svg",
+    appStoreBadge: "/app-store-en.png",
   },
 };
 
@@ -66,7 +66,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
             href="https://luzpsiquicaweb-app.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-block rounded-xl bg-purple-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-purple-700"
+            className="mt-2 inline-flex min-h-[48px] items-center justify-center rounded-xl bg-purple-600 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-purple-700"
           >
             {t.webButton}
           </a>
@@ -82,7 +82,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.playButton}
-              className="inline-block transition hover:opacity-90"
+              className="inline-flex h-12 items-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.playBadge}
@@ -96,7 +96,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.appStoreButton}
-              className="inline-block transition hover:opacity-90"
+              className="inline-flex h-12 items-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.appStoreBadge}
