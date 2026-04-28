@@ -18,7 +18,7 @@ const content = {
     playButton: "Disponible en Google Play",
     playBadge: "/google-play-es.png",
     appStoreButton: "Descargar en App Store",
-    appStoreBadge: "/app-store-es.png",
+    appStoreBadge: "/app-store-es.svg",
   },
   en: {
     title: "Download the app",
@@ -33,7 +33,7 @@ const content = {
     playButton: "Get it on Google Play",
     playBadge: "/google-play-en.png",
     appStoreButton: "Download on the App Store",
-    appStoreBadge: "/app-store-en.png",
+    appStoreBadge: "/app-store-en.svg",
   },
 };
 
