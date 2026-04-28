@@ -76,18 +76,18 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
           <p className="font-medium">{t.storeTitle}</p>
           <p className="text-sm opacity-70">{t.storeText}</p>
 
-          <div className="mt-2 flex flex-wrap items-center gap-4">
+          <div className="mt-2 flex flex-wrap items-center gap-3">
             <a
               href="https://play.google.com/store/apps/details?id=com.luzpsiquica.app"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.playButton}
-              className="inline-flex h-12 items-center transition hover:scale-105 hover:opacity-90"
+              className="inline-flex h-[50px] items-center justify-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.playBadge}
                 alt={t.playButton}
-                className="h-12 w-auto object-contain"
+                className="block h-[50px] max-w-[170px] object-contain"
               />
             </a>
 
@@ -96,12 +96,12 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.appStoreButton}
-              className="inline-flex h-12 items-center transition hover:scale-105 hover:opacity-90"
+              className="inline-flex h-[50px] items-center justify-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.appStoreBadge}
                 alt={t.appStoreButton}
-                className="h-12 w-auto object-contain"
+                className="block h-[50px] max-w-[170px] object-contain"
               />
             </a>
           </div>
