@@ -16,7 +16,7 @@ const content = {
     storeTitle: "App móvil",
     storeText: "Descarga la app móvil",
     playButton: "Disponible en Google Play",
-    playBadge: "/google-play-es.png",
+    playBadge: "/google-play-es.svg",
     appStoreButton: "Descargar en App Store",
     appStoreBadge: "/app-store-es.svg",
   },
@@ -31,7 +31,7 @@ const content = {
     storeTitle: "Mobile app",
     storeText: "Download the mobile app",
     playButton: "Get it on Google Play",
-    playBadge: "/google-play-en.png",
+    playBadge: "/google-play-en.svg",
     appStoreButton: "Download on the App Store",
     appStoreBadge: "/app-store-en.svg",
   },
@@ -82,12 +82,12 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.playButton}
-              className="inline-flex h-[50px] items-center justify-center transition hover:scale-105 hover:opacity-90"
+              className="inline-flex items-center justify-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.playBadge}
                 alt={t.playButton}
-                className="block h-[50px] max-w-[170px] object-contain"
+                className="h-[50px] w-auto object-contain"
               />
             </a>
 
@@ -96,12 +96,12 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t.appStoreButton}
-              className="inline-flex h-[50px] items-center justify-center transition hover:scale-105 hover:opacity-90"
+              className="inline-flex items-center justify-center transition hover:scale-105 hover:opacity-90"
             >
               <img
                 src={t.appStoreBadge}
                 alt={t.appStoreButton}
-                className="block h-[50px] max-w-[170px] object-contain"
+                className="h-[50px] w-auto object-contain"
               />
             </a>
           </div>
