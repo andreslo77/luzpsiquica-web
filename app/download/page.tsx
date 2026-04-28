@@ -87,7 +87,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.playBadge}
                 alt={t.playButton}
-                className="w-[160px] h-auto object-contain"
+                className="w-[155px] h-auto object-contain"
               />
             </a>
 
@@ -101,7 +101,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.appStoreBadge}
                 alt={t.appStoreButton}
-                className="w-[160px] h-auto object-contain"
+                className="w-[135px] h-auto object-contain"
               />
             </a>
           </div>
