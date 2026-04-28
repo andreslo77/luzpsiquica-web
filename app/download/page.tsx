@@ -76,7 +76,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
           <p className="font-medium">{t.storeTitle}</p>
           <p className="text-sm opacity-70">{t.storeText}</p>
 
-          <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-2 flex flex-wrap items-center gap-4">
             <a
               href="https://play.google.com/store/apps/details?id=com.luzpsiquica.app"
               target="_blank"
@@ -87,7 +87,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.playBadge}
                 alt={t.playButton}
-                className="block max-h-12 w-auto max-w-[220px]"
+                className="h-12 w-auto object-contain"
               />
             </a>
 
@@ -101,7 +101,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.appStoreBadge}
                 alt={t.appStoreButton}
-                className="block max-h-12 w-auto max-w-[220px]"
+                className="h-12 w-auto object-contain"
               />
             </a>
           </div>
