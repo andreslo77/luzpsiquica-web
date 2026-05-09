@@ -56,15 +56,15 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
       </div>
 
       <div className="rounded-3xl border border-purple-300/30 bg-purple-500/15 p-5 shadow-lg shadow-purple-900/20">
-        <p className="text-sm font-semibold uppercase tracking-wide text-purple-200">
+        <p className="text-sm font-semibold uppercase tracking-wide text-black">
           🎁 {t.promoTitle}
         </p>
 
-        <p className="mt-2 text-lg font-semibold leading-snug text-white">
+        <p className="mt-2 text-lg font-semibold leading-snug text-black">
           {t.promoText}
         </p>
 
-        <p className="mt-2 text-sm opacity-80">{t.promoNote}</p>
+        <p className="mt-2 text-sm text-black/70">{t.promoNote}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
