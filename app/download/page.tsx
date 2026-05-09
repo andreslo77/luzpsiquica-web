@@ -8,6 +8,10 @@ const content = {
   es: {
     title: "Descargar la app",
     subtitle: "Accede a Luz Psíquica desde tu navegador o descarga la app móvil.",
+    promoTitle: "Promoción de bienvenida",
+    promoText:
+      "Compra tus primeros 20 minutos y recibe 5 minutos adicionales gratis en tu primera consulta.",
+    promoNote: "Disponible por tiempo limitado.",
     webTitle: "Web-app",
     webText: "Accede desde tu navegador en cualquier dispositivo",
     webButton: "Abrir web-app",
@@ -23,6 +27,10 @@ const content = {
   en: {
     title: "Download the app",
     subtitle: "Access Luz Psíquica from your browser or download the app.",
+    promoTitle: "Welcome promotion",
+    promoText:
+      "Buy your first 20 minutes and receive 5 additional minutes free on your first consultation.",
+    promoNote: "Available for a limited time.",
     webTitle: "Web app",
     webText: "Access it from your browser on any device",
     webButton: "Open web app",
@@ -45,6 +53,18 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
       <div>
         <h1 className="text-3xl font-semibold">{t.title}</h1>
         <p className="mt-2 text-sm opacity-80">{t.subtitle}</p>
+      </div>
+
+      <div className="rounded-3xl border border-purple-300/30 bg-purple-500/15 p-5 shadow-lg shadow-purple-900/20">
+        <p className="text-sm font-semibold uppercase tracking-wide text-purple-200">
+          🎁 {t.promoTitle}
+        </p>
+
+        <p className="mt-2 text-lg font-semibold leading-snug text-white">
+          {t.promoText}
+        </p>
+
+        <p className="mt-2 text-sm opacity-80">{t.promoNote}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -87,7 +107,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.playBadge}
                 alt={t.playButton}
-                className="w-[155px] h-auto object-contain"
+                className="h-auto w-[155px] object-contain"
               />
             </a>
 
@@ -101,7 +121,7 @@ export default function DownloadPage({ lang = "es" }: DownloadPageProps) {
               <img
                 src={t.appStoreBadge}
                 alt={t.appStoreButton}
-                className="w-[135px] h-auto object-contain"
+                className="h-auto w-[135px] object-contain"
               />
             </a>
           </div>
