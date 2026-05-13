@@ -10,8 +10,8 @@ const content = {
     subtitle: "Accede a Luz Psíquica desde tu navegador o descarga la app móvil.",
     promoTitle: "Promoción de bienvenida",
     promoText:
-      "Compra tus primeros 20 minutos y recibe 5 minutos adicionales gratis en tu primera consulta.",
-    promoNote: "Disponible por tiempo limitado.",
+      "Regístrate en Luz Psíquica y recibe 5 minutos gratis para tu primera consulta por chat o llamada.",
+    promoNote: "Beneficio válido una sola vez por usuario y dispositivo.",
     webTitle: "Web-app",
     webText: "Accede desde tu navegador en cualquier dispositivo",
     webButton: "Abrir web-app",
@@ -29,8 +29,8 @@ const content = {
     subtitle: "Access Luz Psíquica from your browser or download the app.",
     promoTitle: "Welcome promotion",
     promoText:
-      "Buy your first 20 minutes and receive 5 additional minutes free on your first consultation.",
-    promoNote: "Available for a limited time.",
+      "Sign up for Luz Psíquica and receive 5 free minutes for your first chat or voice consultation.",
+    promoNote: "Benefit available once per user and device.",
     webTitle: "Web app",
     webText: "Access it from your browser on any device",
     webButton: "Open web app",
