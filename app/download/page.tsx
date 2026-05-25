@@ -137,7 +137,7 @@ export default async function DownloadPage({ lang = "es" }: DownloadPageProps) {
             return (
               <Link
                 key={p.slug || p._id || p.id || displayName}
-                href={`/${lang}/psychics`}
+                href="https://luzpsiquicaweb-app.com"
                 className="rounded-3xl border border-white/20 bg-white/45 p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-md"
               >
                 <div className="flex items-start gap-3">
