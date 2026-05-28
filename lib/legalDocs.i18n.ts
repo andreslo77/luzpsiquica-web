@@ -25,8 +25,8 @@ export const LEGAL_DOCS: Record<
   es: {
     NORMAS: {
       title: "Normas y Privacidad",
-      version: "2026-04-24",
-      owner: "Claudia Loaiza",
+      version: "2026-05-28",
+      owner: "Vortex GD / Equipo Luz Psíquica",
       jurisdiction: "Colombia",
       email: "luzpsiquica1@gmail.com",
       whatsappNumberPretty: "+1 (813) 618-7770",
@@ -142,8 +142,8 @@ export const LEGAL_DOCS: Record<
     OPERATIVO: {
       title: "Documento de Funcionamiento Operativo de la Plataforma",
       version: "1.1",
-      date: "2026-01-04",
-      platform: "Aplicación móvil Luz Psíquica",
+      date: "2026-05-28",
+      platform: "Vortex GD / Equipo Luz Psíquica",
       // Si quieres, aquí puedes poner los mismos datos de contacto que en NORMAS
       email: "luzpsiquica1@gmail.com",
       whatsappNumberPretty: "+1 (813) 618-7770",
@@ -308,7 +308,7 @@ export const LEGAL_DOCS: Record<
           title: "12. Información adicional",
           body:
             "Responsable del desarrollo tecnológico de la plataforma:\n" +
-            "Andrés Loaiza\n" +
+            "Vortex GD / Equipo Luz Psíquica\n" +
             "El diseño, desarrollo técnico, arquitectura funcional y operación tecnológica de la plataforma Luz Psíquica han sido realizados bajo la dirección del responsable mencionado, en coordinación con los objetivos, principios éticos y lineamientos operativos de la plataforma.\n" +
             "Nota final\n" +
             "Este documento se publica como parte del compromiso de Luz Psíquica con la transparencia, la ética tecnológica, la creatividad responsable y la claridad operativa.",
@@ -320,8 +320,8 @@ export const LEGAL_DOCS: Record<
   en: {
     NORMAS: {
       title: "Rules & Privacy",
-      version: "2026-04-24",
-      owner: "Claudia Loaiza",
+      version: "2026-05-28",
+      owner: "Vortex GD / Equipo Luz Psíquica",
       jurisdiction: "Colombia",
       email: "luzpsiquica1@gmail.com",
       whatsappNumberPretty: "+1 (813) 618-7770",
@@ -442,8 +442,8 @@ export const LEGAL_DOCS: Record<
     OPERATIVO: {
       title: "Platform Operational Document",
       version: "1.1",
-      date: "2026-01-07",
-      platform: "Luz Psíquica mobile app",
+      date: "2026-05-28",
+      platform: "Vortex GD / Equipo Luz Psíquica",
       email: "luzpsiquica1@gmail.com",
       whatsappNumberPretty: "+1 (813) 618-7770",
       whatsappNumberRaw: "+18136187770",
@@ -607,7 +607,7 @@ export const LEGAL_DOCS: Record<
           title: "12. Additional information",
           body:
             "Person responsible for the technological development of the platform:\n" +
-            "Andrés Loaiza\n" +
+            "Vortex GD / Equipo Luz Psíquica\n" +
             "The design, technical development, functional architecture, and technological operation of the Luz Psíquica platform have been carried out under the direction of the responsible person mentioned, in coordination with the platform’s objectives, ethical principles, and operational guidelines.\n" +
             "Final note\n" +
             "This document is published as part of Luz Psíquica’s commitment to transparency, technological ethics, responsible creativity, and operational clarity.",
