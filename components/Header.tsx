@@ -12,14 +12,14 @@ function detectLang(pathname: string) {
 }
 
 function stripLeadingLang(pathname: string) {
-  // "/es/psychics/frida" -> "/psychics/frida"
-  // "/en" -> "/"
   const parts = (pathname || "/").split("/");
   const first = parts[1];
+
   if (first === "en" || first === "es") {
     const rest = parts.slice(2).join("/");
     return rest ? `/${rest}` : "/";
   }
+
   return pathname || "/";
 }
 
@@ -29,9 +29,8 @@ export default function Header() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const safeLang = detectLang(pathname); // "es" | "en"
+  const safeLang = detectLang(pathname);
   const base = `/${safeLang}`;
-
   const toggleLang = safeLang === "en" ? "es" : "en";
 
   const handleToggleLanguage = () => {
@@ -48,11 +47,7 @@ export default function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -93,7 +88,7 @@ export default function Header() {
 
           <div className="min-w-0 leading-tight">
             <div
-              className="truncate font-semibold text-sm sm:text-base"
+              className="truncate text-sm font-semibold sm:text-base"
               style={{ color: "var(--lp-primary)" }}
             >
               Luz Psíquica
@@ -110,37 +105,20 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Navegación escritorio */}
         <nav className="hidden items-center gap-5 text-sm md:flex">
-          <Link
-            href={`${base}/psychics`}
-            className="hover:opacity-100"
-            style={{ color: "rgba(31,27,36,0.75)" }}
-          >
+          <Link href={`${base}/psychics`} style={{ color: "rgba(31,27,36,0.75)" }}>
             {safeLang === "en" ? "Psychics" : "Psíquicos"}
           </Link>
 
-          <Link
-            href={`${base}/how-it-works`}
-            className="hover:opacity-100"
-            style={{ color: "rgba(31,27,36,0.75)" }}
-          >
+          <Link href={`${base}/how-it-works`} style={{ color: "rgba(31,27,36,0.75)" }}>
             {safeLang === "en" ? "How it works" : "Cómo funciona"}
           </Link>
 
-          <Link
-            href={`${base}/legal`}
-            className="opacity-90 hover:opacity-100"
-            style={{ color: "rgba(31,27,36,0.75)" }}
-          >
+          <Link href={`${base}/legal`} style={{ color: "rgba(31,27,36,0.75)" }}>
             Legal
           </Link>
 
-          <Link
-            href={`${base}/legal/account-deletion`}
-            className="hover:opacity-100"
-            style={{ color: "rgba(31,27,36,0.75)" }}
-          >
+          <Link href={`${base}/legal/account-deletion`} style={{ color: "rgba(31,27,36,0.75)" }}>
             {safeLang === "en" ? "Support" : "Soporte"}
           </Link>
 
@@ -167,7 +145,6 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Botón hamburguesa móvil */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -202,7 +179,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Menú móvil desplegable */}
       {mobileMenuOpen && (
         <div
           id="mobile-menu"
@@ -216,7 +192,7 @@ export default function Header() {
             <Link
               href={`${base}/psychics`}
               onClick={closeMobileMenu}
-              className="rounded-2xl px-4 py-3 text-sm font-medium transition hover:opacity-90"
+              className="rounded-2xl px-4 py-3 text-sm font-medium"
               style={{
                 background: "rgba(255,255,255,0.55)",
                 color: "rgba(31,27,36,0.85)",
@@ -229,7 +205,7 @@ export default function Header() {
             <Link
               href={`${base}/how-it-works`}
               onClick={closeMobileMenu}
-              className="rounded-2xl px-4 py-3 text-sm font-medium transition hover:opacity-90"
+              className="rounded-2xl px-4 py-3 text-sm font-medium"
               style={{
                 background: "rgba(255,255,255,0.55)",
                 color: "rgba(31,27,36,0.85)",
@@ -242,7 +218,7 @@ export default function Header() {
             <Link
               href={`${base}/legal`}
               onClick={closeMobileMenu}
-              className="rounded-2xl px-4 py-3 text-sm font-medium transition hover:opacity-90"
+              className="rounded-2xl px-4 py-3 text-sm font-medium"
               style={{
                 background: "rgba(255,255,255,0.55)",
                 color: "rgba(31,27,36,0.85)",
@@ -255,7 +231,7 @@ export default function Header() {
             <Link
               href={`${base}/legal/account-deletion`}
               onClick={closeMobileMenu}
-              className="rounded-2xl px-4 py-3 text-sm font-medium transition hover:opacity-90"
+              className="rounded-2xl px-4 py-3 text-sm font-medium"
               style={{
                 background: "rgba(255,255,255,0.55)",
                 color: "rgba(31,27,36,0.85)",
@@ -269,24 +245,20 @@ export default function Header() {
               <button
                 type="button"
                 onClick={handleToggleLanguage}
-                className="rounded-full px-4 py-3 text-sm font-semibold transition hover:opacity-90"
+                className="rounded-full px-4 py-3 text-sm font-semibold"
                 style={{
                   border: "1px solid var(--lp-border)",
                   background: "rgba(255,255,255,0.55)",
                   color: "var(--lp-primary-2)",
                 }}
-                aria-label="Cambiar idioma"
-                title={safeLang === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
               >
-                {safeLang === "en"
-                  ? "Cambiar a Español"
-                  : "Switch to English"}
+                {safeLang === "en" ? "Cambiar a Español" : "Switch to English"}
               </button>
 
               <Link
                 href={`${base}/download`}
                 onClick={closeMobileMenu}
-                className="rounded-full px-4 py-3 text-center text-sm font-semibold transition hover:opacity-90"
+                className="rounded-full px-4 py-3 text-center text-sm font-semibold"
                 style={{
                   border: "1px solid var(--lp-border)",
                   background: "rgba(255,255,255,0.55)",

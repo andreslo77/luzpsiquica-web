@@ -84,7 +84,17 @@ export default async function LegalPage({ params }: PageProps) {
         };
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 py-10">
+    <section
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden px-6 py-10 sm:px-10 lg:px-16"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(244,237,255,0.18), rgba(244,237,255,0.18)), url('/images/home/celestial-mantel.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+    <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <div
         className="rounded-[40px] p-10"
         style={{
@@ -129,5 +139,6 @@ export default async function LegalPage({ params }: PageProps) {
         </div>
       </div>
     </div>
-  );
+  </section>
+);
 }

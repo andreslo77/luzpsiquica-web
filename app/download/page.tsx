@@ -113,7 +113,17 @@ export default async function DownloadPage({ lang = "es" }: DownloadPageProps) {
   const featuredPsychics = psychics.slice(0, 3);
 
   return (
-    <div className="flex flex-col gap-8">
+    <section
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden px-6 py-10 sm:px-10 lg:px-16"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(244,237,255,0.18), rgba(244,237,255,0.18)), url('/images/home/celestial-cartas2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+    <div className="mx-auto flex max-w-5xl flex-col gap-8">
       <div className="rounded-3xl border border-purple-300/30 bg-purple-500/15 p-5 shadow-lg shadow-purple-900/20">
         <p className="text-sm font-semibold uppercase tracking-wide text-black">
           🎁 {t.promoTitle}
@@ -239,5 +249,6 @@ export default async function DownloadPage({ lang = "es" }: DownloadPageProps) {
         </div>
       </div>
     </div>
-  );
+  </section>
+);
 }
