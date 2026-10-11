@@ -5,7 +5,7 @@ type PageProps = {
   params: Promise<{ lang: string }> | { lang: string };
 };
 
-const SUPPORT_EMAIL = "luzpsiquica1@gmail.com";
+const SUPPORT_EMAIL = "luzpsiquica@vortexgd.com";
 const WHATSAPP_DISPLAY = "+1 (813) 618-7770";
 const WHATSAPP_LINK = "https://wa.me/18136187770";
 
