@@ -9,6 +9,7 @@ type DownloadPageProps = {
 const content = {
   es: {
     promoTitle: "Promoción de bienvenida",
+    promoPrice: "US$1.25 / minuto",
     promoText:
       "Regístrate en Luz Psíquica y recibe 5 minutos gratis para tu primera consulta por chat o llamada.",
     promoNote: "Escoge el psíquico que desees para tu consulta",
@@ -27,6 +28,7 @@ const content = {
   },
   en: {
     promoTitle: "Welcome promotion",
+    promoPrice: "US$1.25 / minute",
     promoText:
       "Sign up for Luz Psíquica and receive 5 free minutes for your first chat or voice consultation.",
     promoNote: "Choose the psychic you want for your consultation",
@@ -127,6 +129,10 @@ export default async function DownloadPage({ lang = "es" }: DownloadPageProps) {
       <div className="rounded-3xl border border-purple-300/30 bg-purple-500/15 p-5 shadow-lg shadow-purple-900/20">
         <p className="text-sm font-semibold uppercase tracking-wide text-black">
           🎁 {t.promoTitle}
+        </p>
+
+        <p className="mt-2 text-3xl font-bold leading-tight text-black sm:text-4xl">
+          {t.promoPrice}
         </p>
 
         <p className="mt-2 text-lg font-semibold leading-snug text-black">
