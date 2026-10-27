@@ -8,8 +8,8 @@ type DownloadPageProps = {
 
 const content = {
   es: {
-    promoTitle: "Promoción de bienvenida",
     promoPrice: "US$1.25 / minuto",
+    promoTitle: "Promoción de bienvenida",
     promoText:
       "Regístrate en Luz Psíquica y recibe 5 minutos gratis para tu primera consulta por chat o llamada.",
     promoNote: "Escoge el psíquico que desees para tu consulta",
@@ -27,8 +27,8 @@ const content = {
     fallbackComment: "Consulta con privacidad, respeto y conexión espiritual.",
   },
   en: {
-    promoTitle: "Welcome promotion",
     promoPrice: "US$1.25 / minute",
+    promoTitle: "Welcome promotion",
     promoText:
       "Sign up for Luz Psíquica and receive 5 free minutes for your first chat or voice consultation.",
     promoNote: "Choose the psychic you want for your consultation",
